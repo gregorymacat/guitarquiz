@@ -133,7 +133,7 @@ See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a l
 
 - Finish README
 - Chord Quiz
-- Refine interfacing and visuals
+- Refine interface and visuals
 
 
 
