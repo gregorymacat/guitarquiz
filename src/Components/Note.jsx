@@ -15,6 +15,7 @@ const GUITAR_NOTES = [
 const NOTE_STYLE = {fill: 'rgb(256, 0, 0)', stroke: 'rgb(256, 0, 0)'};
 
 function Note({stringCount, fretCount, setNote, correctCount}) {
+  const [currString, setCurrString] = useState();
   const [newNoteX, setNewNoteX] = useState();
   const [newNoteY, setNewNoteY] = useState()
 
@@ -32,6 +33,12 @@ function Note({stringCount, fretCount, setNote, correctCount}) {
     if (correctCount !== 0) chooseRandomNote();
   }, [correctCount])
 
+  useEffect(() => {
+    if (currString + 1 > stringCount) {
+      chooseRandomNote();
+    }
+  }, [stringCount]);
+
   const radius = getNoteRadius();
 
   function chooseRandomNote() {
@@ -43,6 +50,7 @@ function Note({stringCount, fretCount, setNote, correctCount}) {
     const xCoord = calculateMiddleOfFretsX(randomFret);
 
     console.log('This is the random fret: ', randomFret);
+    setCurrString(randomString);
     setNewNoteX(xCoord);
     setNewNoteY(yCoord);
     setNote(GUITAR_NOTES[randomString][randomFret]);

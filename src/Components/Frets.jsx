@@ -21,7 +21,7 @@ function Frets({fretCount, totalHeight}) {
     getFirstFretXCoord,
   } = displayUnits;
   const fretY1 = yOffset + verticalShrink;
-  const fretY2 = (height + yOffset) - verticalShrink;
+  const fretY2 = totalHeight - verticalShrink;
   const firstFretXCoord = getFirstFretXCoord();
   //TODO: DRY this up with line below for nextFret
   const firstFret = <line key={'fret-1'} style={FRET_STYLE} x1={firstFretXCoord} y1={fretY1}
