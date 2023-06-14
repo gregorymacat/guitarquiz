@@ -14,32 +14,27 @@ function FretMarkers({fretCount, stringCount, totalHeight}) {
       fretboard: {
         yOffset,
       },
-      frets: {
-        fretGap,
-      },
       strings: {
         stringGap,
       },
     },
-    getFirstFretXCoord,
     getFirstStringYCoord,
     getFretMarkerRadius,
     calculateMiddleOfFretsX,
   } = displayUnits;
   const boardMiddleYCoord = (totalHeight + yOffset) / 2;
-  const firstFretXCoord = getFirstFretXCoord();
   const firstStringYCoord = getFirstStringYCoord();
   const radius = getFretMarkerRadius();
 
   for (let i = 1; i <= fretCount; i++) {
     if (i % 2 !== 0 && (i !== 1 && i !== 11)) {
-      const currMarkerXCoord = calculateMiddleOfFretsX(firstFretXCoord, i);
+      const currMarkerXCoord = calculateMiddleOfFretsX(i);
       const currFretMarker =  <circle key={`fret-marker-${i}`} cx={currMarkerXCoord} cy={boardMiddleYCoord} r={radius} style={FRET_STYLE}/>;
 
       fretMarkers.push(currFretMarker);
     } else if (i === 12) {
       //add two vertically stacked dots instead of just one for the 12th fret
-      const currMarkerXCoord = calculateMiddleOfFretsX(firstFretXCoord, i);
+      const currMarkerXCoord = calculateMiddleOfFretsX(i);
       const topMarkerYCoord = firstStringYCoord + stringGap;
       const bottomMarkerYCoord = firstStringYCoord + (stringGap * (stringCount - 2));
 

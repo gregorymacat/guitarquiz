@@ -36,17 +36,30 @@ const getNoteRadius = () => UNITS.strings.stringGap / UNITS.note.noteOverallRadi
 /**
  * Calculates x-coordinate that is the middle of two frets. Looks backwards for comparison.
  *
- * @param {number} firstFretXCoord X coordinate of the first fret (x1 or x2, both are the same)
- * @param {number} currentFretPos The forward and current fret to find the previous. 1-based not 0-based for count.
+ * @param {number} currentFretPos The forward and current fret to find the previous. 
+ * 0-based for fret count (starting count from open string).
  * @return {number} x coordinate for the middle of two frets.
  */
-const calculateMiddleOfFretsX = (firstFretXCoord, currentFretPos) => {
+const calculateMiddleOfFretsX = (currentFretPos) => {
   const { fretGap } = UNITS.frets;
-  const previousFret = firstFretXCoord + (fretGap * (currentFretPos - 2));
-  const currFret = firstFretXCoord + (fretGap * (currentFretPos - 1));
+  const { xOffset } = UNITS.fretboard;
+
+  if (currentFretPos === 0) {
+    return xOffset;
+  } else if (currentFretPos === 1) {
+    return ((UNITS.fretboard.xOffset + getFirstFretXCoord()) / 2);
+  }
+
+  const previousFret = getFirstFretXCoord() + (fretGap * (currentFretPos - 2));
+  const currFret = getFirstFretXCoord() + (fretGap * (currentFretPos - 1));
   
   return ((previousFret + currFret) / 2);
 }
+/**
+ * @param {number} stringNum 0-based string number with High E string being 0
+ * @returns y coordinate of the chosen string number
+ */
+const calculateAnyStringYCoord = (stringNum) => (getFirstStringYCoord() + (UNITS.strings.stringGap * stringNum));
 
 module.exports = {
   UNITS,
@@ -55,4 +68,5 @@ module.exports = {
   getFretMarkerRadius,
   getNoteRadius,
   calculateMiddleOfFretsX,
+  calculateAnyStringYCoord,
 }

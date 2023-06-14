@@ -14,10 +14,10 @@ function Strings({stringCount}) {
       },
       strings: {
         horizontalShrink,
-        stringGap,
       },
     },
     getFirstStringYCoord,
+    calculateAnyStringYCoord,
   } = displayUnits;
   const stringX1 = xOffset + horizontalShrink;
   const stringX2 = (xOffset + width) - horizontalShrink;
@@ -28,7 +28,7 @@ function Strings({stringCount}) {
     if (i === 0) {
       allStrings.push(highestString);
     } else {
-      const nextStringYCoord = firstStringYCoord + (stringGap * i);
+      const nextStringYCoord = calculateAnyStringYCoord(i);
       const nextString = <line key={`string-${i+1}`} style={STRING_STYLE} x1={stringX1} y1={nextStringYCoord} x2={stringX2} y2={nextStringYCoord}></line>;
 
       allStrings.push(nextString);

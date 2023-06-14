@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import displayUnits from '../Helpers/displayUnits.js';
 
 const GUITAR_NOTES = [
@@ -14,25 +14,42 @@ const GUITAR_NOTES = [
 ];
 const NOTE_STYLE = {fill: 'rgb(256, 0, 0)', stroke: 'rgb(256, 0, 0)'};
 
+function Note({stringCount, fretCount, setNote, correctCount}) {
+  const [newNoteX, setNewNoteX] = useState();
+  const [newNoteY, setNewNoteY] = useState()
 
-function Note() {
   const {
     getNoteRadius,
     calculateMiddleOfFretsX,
+    calculateAnyStringYCoord,
   } = displayUnits;
+
+  useEffect(() => {
+    chooseRandomNote();
+  }, []);
+
+  useEffect(() => {
+    if (correctCount !== 0) chooseRandomNote();
+  }, [correctCount])
 
   const radius = getNoteRadius();
 
-  //Pick a random number 1-6 (or 0-5)
-  //Pick another random number 1-12 (or 0-11)
+  function chooseRandomNote() {
+    const randomString = (Math.floor(Math.random() * stringCount));
+    //Adding 1 to include open strings as well as 12th fret (11th index)
+    const randomFret = (Math.floor(Math.random() * (fretCount + 1)));
 
-  //Find the height for that string number 1-6
-  //Calculate middle of the frets for the number 1-12
+    const yCoord = calculateAnyStringYCoord(randomString);
+    const xCoord = calculateMiddleOfFretsX(randomFret);
 
-  //Set currentNote in App for comparison to answer
+    console.log('This is the random fret: ', randomFret);
+    setNewNoteX(xCoord);
+    setNewNoteY(yCoord);
+    setNote(GUITAR_NOTES[randomString][randomFret]);
+  }
 
   return (
-    <circle cx={5} cy={5} r={radius} style={NOTE_STYLE}/>
+    <circle cx={newNoteX} cy={newNoteY} r={radius} style={NOTE_STYLE}/>
   )
 }
 

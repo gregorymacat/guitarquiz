@@ -9,7 +9,7 @@ import displayUnits from '../Helpers/displayUnits.js';
 const STANDARD_STRING_COUNT = 6;
 const FRETBOARD_STYLE = {fill: 'rgb(150, 75, 0)', stroke: 'rgb(0, 0, 0)'};
 
-function Display({stringCount, fretCount}) {
+function Display({stringCount, fretCount, setNote, correctCount}) {
   const {
     UNITS: {
       fretboard: {
@@ -30,10 +30,10 @@ function Display({stringCount, fretCount}) {
   return (
     <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
       {fretboard}
-      <Note />
       <Strings stringCount={stringCount} />
       <Frets fretCount={fretCount} totalHeight={totalFretboardHeight} />
       <FretMarkers fretCount={fretCount} stringCount={stringCount} totalHeight={totalFretboardHeight} />
+      <Note stringCount={stringCount} fretCount={fretCount} setNote={setNote} correctCount={correctCount}/>
     </svg>
   )
 }
