@@ -23,7 +23,7 @@ function Strings({settings}) {
   const stringX2 = (xOffset + fretboardWidth) - horizontalShrink;
   const firstStringYCoord = getFirstStringYCoord();
   const highestString = <line key={'string-1'} style={STRING_STYLE} x1={stringX1} y1={firstStringYCoord} x2={stringX2} y2={firstStringYCoord}></line>;
-  console.log('String section: ', settings.numOfStrings);
+  
   for (let i = 0; i < settings.numOfStrings; i++) {
     if (i === 0) {
       allStrings.push(highestString);
@@ -37,7 +37,6 @@ function Strings({settings}) {
 
   return (
     <g id="strings">
-      {console.log('Passing down settings 2: ', settings)}
       {allStrings.map(string => string)}
     </g>
   )

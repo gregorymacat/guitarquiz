@@ -50,7 +50,6 @@ function Note({settings, setNote, correctCount, isCorrect}) {
     const yCoord = calculateAnyStringYCoord(randomString);
     const xCoord = calculateMiddleOfFretsX(randomFret);
 
-    console.log('This is the random fret: ', randomFret);
     setCurrString(randomString);
     setNewNoteX(xCoord);
     setNewNoteY(yCoord);

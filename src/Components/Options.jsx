@@ -4,7 +4,6 @@ function Options({settings, changeSettings}) {
   const handleChange = (event) => {
     const settingsCopy = settings;
     settingsCopy.numOfStrings = event.target.value;
-    console.log('Changing: ', settingsCopy)
     changeSettings(prevState => ({
       ...prevState,
       numOfStrings: event.target.value,

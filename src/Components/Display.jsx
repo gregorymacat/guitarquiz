@@ -28,18 +28,11 @@ function Display({settings, stringCount, setNote, correctCount, isCorrect}) {
       },
     },
   } = displayUnits;
-  useEffect(() => {
-    console.log('String count changing in display: ', stringCount)
-  }, [stringCount])
-  useEffect(() => {
-    console.log('Settings changing in display: ', settings)
-  }, [settings])
   const fretboardHeight = height + ((settings.numOfStrings - STANDARD_STRING_COUNT) * stringGap);
   const totalFretboardHeight = yOffset + fretboardHeight;
-  console.log('Passing down settings: ', settings);
+
   return (
     <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      {console.log('Passing down settings 1: ', settings)}
       <rect style={NUT_STYLE} x={xOffset - nutDistanceFromBoardX} y={yOffset} width={nutWidth} height={fretboardHeight}></rect>
       <rect style={FRETBOARD_STYLE} x={xOffset} y={yOffset} width={fretboardWidth} height={fretboardHeight}></rect>
       <Strings settings={settings} />

@@ -66,7 +66,6 @@ function App() {
 
   return (
     <div>
-      {console.log('These are the settings: ', settings)}
       <section id="navbar">
         <Navbar settings={settings} changeSettings={setSettings}></Navbar>
       </section>
