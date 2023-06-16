@@ -6,7 +6,7 @@ const FRET_STYLE = {fill: 'rgb(239, 239, 239)', stroke: 'rgb(239, 239, 239)'};
 
 
 
-function FretMarkers({fretCount, stringCount, totalHeight}) {
+function FretMarkers({settings, totalHeight}) {
   //FRETBOARD MARKERS
   const fretMarkers = [];
   const {
@@ -26,7 +26,7 @@ function FretMarkers({fretCount, stringCount, totalHeight}) {
   const firstStringYCoord = getFirstStringYCoord();
   const radius = getFretMarkerRadius();
 
-  for (let i = 1; i <= fretCount; i++) {
+  for (let i = 1; i <= settings.numOfFrets; i++) {
     if (i % 2 !== 0 && (i !== 1 && i !== 11)) {
       const currMarkerXCoord = calculateMiddleOfFretsX(i);
       const currFretMarker =  <circle key={`fret-marker-${i}`} cx={currMarkerXCoord} cy={boardMiddleYCoord} r={radius} style={FRET_STYLE}/>;
@@ -36,7 +36,7 @@ function FretMarkers({fretCount, stringCount, totalHeight}) {
       //add two vertically stacked dots instead of just one for the 12th fret
       const currMarkerXCoord = calculateMiddleOfFretsX(i);
       const topMarkerYCoord = firstStringYCoord + stringGap;
-      const bottomMarkerYCoord = firstStringYCoord + (stringGap * (stringCount - 2));
+      const bottomMarkerYCoord = firstStringYCoord + (stringGap * (settings.numOfStrings - 2));
 
       const topFretMarker = <circle key={`fret-marker-${i}-top`} cx={currMarkerXCoord} cy={topMarkerYCoord} r={radius} style={FRET_STYLE}/>;
       const bottomFretMarker = <circle key={`fret-marker-${i}-bottom`} cx={currMarkerXCoord} cy={bottomMarkerYCoord} r={radius} style={FRET_STYLE}/>;

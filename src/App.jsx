@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import Display from './Components/Display.jsx';
 import UserInput from './Components/UserInput.jsx';
-import Options from './Components/Options.jsx';
+import Navbar from './Components/Navbar.jsx';
+
+const DEFAULT_SETTINGS = {
+  numOfStrings: 6,
+  numOfFrets: 12,
+  delayBetweenNotes: 2000,
+}
 
 function App() {
-  const [numOfStrings, setNumOfStrings] = useState(6);
-  const [numOfFrets, setNumOfFrets] = useState(12);
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [currentNote, setCurrentNote] = useState('');
   const [guess, setGuess] = useState('');
+  const [isCorrect, setIsCorrect] = useState(false);
   const [isIncorrect, setIsIncorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [totalGuesses, setTotalGuesses] = useState(0);
@@ -18,20 +24,38 @@ function App() {
         const [sharp, flat] = currentNote.split('/');
 
         if (guess === sharp || guess === flat) {
-          setCorrectCount(correctCount + 1);
-          setTotalGuesses(totalGuesses + 1);
-          setGuess('');
+          // setCorrectCount(correctCount + 1);
+          // setTotalGuesses(totalGuesses + 1);
+          // setGuess('');
+          // setIsIncorrect(false);
+          setIsCorrect(true);
           setIsIncorrect(false);
+
+          setTimeout(() => {
+            setGuess('');
+            setCorrectCount(correctCount + 1);
+            setTotalGuesses(totalGuesses + 1);
+            setIsCorrect(false);
+          }, settings.delayBetweenNotes);
         } else {
           setIsIncorrect(true);
           setTotalGuesses(totalGuesses + 1);
         }
       } else {
         if (guess === currentNote) {
-          setCorrectCount(correctCount + 1);
-          setTotalGuesses(totalGuesses + 1);
-          setGuess('');
+          // setCorrectCount(correctCount + 1);
+          // setTotalGuesses(totalGuesses + 1);
+          // setGuess('');
+          // setIsIncorrect(false);
+          setIsCorrect(true);
           setIsIncorrect(false);
+
+          setTimeout(() => {
+            setGuess('');
+            setCorrectCount(correctCount + 1);
+            setTotalGuesses(totalGuesses + 1);
+            setIsCorrect(false);
+          }, 3000);
         } else {
           setIsIncorrect(true);
           setTotalGuesses(totalGuesses + 1);
@@ -42,16 +66,21 @@ function App() {
 
   return (
     <div>
-      <Options setStringCount={setNumOfStrings}/> 
-      <UserInput setGuess={setGuess}/>
-      {isIncorrect ? <b>Incorrect, please try again</b> : null}
-      <br/>
-      <span>Current Note: {currentNote}</span>
-      <br/>
-      <span>Current Guess: {guess}</span>
-      <br/>
-      <span>{correctCount}/{totalGuesses}</span>
-      <Display stringCount={numOfStrings} fretCount={numOfFrets} setNote={setCurrentNote} correctCount={correctCount}/>
+      {console.log('These are the settings: ', settings)}
+      <section id="navbar">
+        <Navbar settings={settings} changeSettings={setSettings}></Navbar>
+      </section>
+      
+      <section id="main">
+        <UserInput setGuess={setGuess}/>
+        <div className="guesses-results-container">
+          {isIncorrect ? <b>Incorrect, please try again</b> : null}
+          {isCorrect ? <b>Correct!</b> : null}
+          <span>Last Guess: {guess}</span>
+          <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
+        </div>
+        <Display settings={settings} stringCount={settings.numOfStrings} fretCount={settings.numOfFrets} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
+      </section>
     </div>
   )
 }

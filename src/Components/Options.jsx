@@ -1,8 +1,14 @@
 import React from 'react';
 
-function Options({setStringCount}) {
+function Options({settings, changeSettings}) {
   const handleChange = (event) => {
-    setStringCount(event.target.value);
+    const settingsCopy = settings;
+    settingsCopy.numOfStrings = event.target.value;
+    console.log('Changing: ', settingsCopy)
+    changeSettings(prevState => ({
+      ...prevState,
+      numOfStrings: event.target.value,
+    }));
   }
   return (
     <div className="options-select-container">

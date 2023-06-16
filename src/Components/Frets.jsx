@@ -4,7 +4,7 @@ import displayUnits from '../Helpers/displayUnits.js';
 //Shared style with Fret Markers, doesn't have to be consistent but looks nice for now
 const FRET_STYLE = {fill: 'rgb(239, 239, 239)', stroke: 'rgb(239, 239, 239)'};
 
-function Frets({fretCount, totalHeight}) {
+function Frets({settings, totalHeight}) {
   //FRETS
   const allFrets = [];
   const {
@@ -27,7 +27,7 @@ function Frets({fretCount, totalHeight}) {
   const firstFret = <line key={'fret-1'} style={FRET_STYLE} x1={firstFretXCoord} y1={fretY1}
     x2={firstFretXCoord} y2={fretY2}></line>;
 
-  for (let i = 0; i < fretCount; i++) {
+  for (let i = 0; i < settings.numOfFrets; i++) {
     if (i === 0) {
       allFrets.push(firstFret);
     } else {

@@ -1,0 +1,7 @@
+section#navbar {
+  height: 5%;
+  width: 100%;
+  position: absolute;
+  border-bottom: 1px solid black;
+  background-color: rgba(87, 87, 87, 0.5);
+}

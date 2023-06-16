@@ -1,0 +1,7 @@
+@import "./styles/reset.css";
+@import "./styles/navbar.css";
+@import "./styles/main.css";
+
+#app {
+  background-color: whitesmoke;
+}

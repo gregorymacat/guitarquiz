@@ -1,0 +1,26 @@
+section#main {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  top: 6%;
+}
+.user-input-container {
+  width: 25%;
+  margin: 0 auto;
+}
+.user-input-container #text-input {
+  border-bottom: 1px solid grey;
+  background-color: whitesmoke;
+}
+.user-input-container #text-submit {
+  border: 1px solid black;
+  background-color: whitesmoke;
+}
+
+.guesses-results-container {
+  width: 25%;
+  margin: 0 auto;
+}
+.guesses-results-container span {
+  display: block;
+}

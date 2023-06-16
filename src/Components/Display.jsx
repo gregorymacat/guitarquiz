@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Strings from './Strings.jsx';
 import Frets from './Frets.jsx';
 import FretMarkers from './FretMarkers.jsx';
@@ -8,32 +8,44 @@ import displayUnits from '../Helpers/displayUnits.js';
 
 const STANDARD_STRING_COUNT = 6;
 const FRETBOARD_STYLE = {fill: 'rgb(150, 75, 0)', stroke: 'rgb(0, 0, 0)'};
+const NUT_STYLE = {fill: 'rgb(0, 0, 0)', stroke: 'rgb(0, 0, 0)'};
 
-function Display({stringCount, fretCount, setNote, correctCount}) {
+function Display({settings, stringCount, setNote, correctCount, isCorrect}) {
   const {
     UNITS: {
       fretboard: {
         height,
-        width,
+        fretboardWidth,
         xOffset,
         yOffset
       },
       strings: {
         stringGap,
       },
+      nut: {
+        nutDistanceFromBoardX,
+        nutWidth,
+      },
     },
   } = displayUnits;
-  const fretboardHeight = height + ((stringCount - STANDARD_STRING_COUNT) * stringGap);
+  useEffect(() => {
+    console.log('String count changing in display: ', stringCount)
+  }, [stringCount])
+  useEffect(() => {
+    console.log('Settings changing in display: ', settings)
+  }, [settings])
+  const fretboardHeight = height + ((settings.numOfStrings - STANDARD_STRING_COUNT) * stringGap);
   const totalFretboardHeight = yOffset + fretboardHeight;
-  const fretboard = <rect style={FRETBOARD_STYLE} x={xOffset} y={yOffset} width={width} height={fretboardHeight}></rect>;
-
+  console.log('Passing down settings: ', settings);
   return (
     <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      {fretboard}
-      <Strings stringCount={stringCount} />
-      <Frets fretCount={fretCount} totalHeight={totalFretboardHeight} />
-      <FretMarkers fretCount={fretCount} stringCount={stringCount} totalHeight={totalFretboardHeight} />
-      <Note stringCount={stringCount} fretCount={fretCount} setNote={setNote} correctCount={correctCount}/>
+      {console.log('Passing down settings 1: ', settings)}
+      <rect style={NUT_STYLE} x={xOffset - nutDistanceFromBoardX} y={yOffset} width={nutWidth} height={fretboardHeight}></rect>
+      <rect style={FRETBOARD_STYLE} x={xOffset} y={yOffset} width={fretboardWidth} height={fretboardHeight}></rect>
+      <Strings settings={settings} />
+      <Frets settings={settings} totalHeight={totalFretboardHeight} />
+      <FretMarkers settings={settings} totalHeight={totalFretboardHeight} />
+      <Note settings={settings} setNote={setNote} correctCount={correctCount} isCorrect={isCorrect}/>
     </svg>
   )
 }

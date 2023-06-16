@@ -3,7 +3,7 @@ const UNITS = {
     xOffset: 50,
     yOffset: 70,
     height: 120,
-    width: 380,
+    fretboardWidth: 380,
   },
   frets: {
     verticalShrink: 2,
@@ -11,7 +11,7 @@ const UNITS = {
     firstFretGap: 30,
   },
   strings: {
-    horizontalShrink: 2,
+    horizontalShrink: 1,
     stringGap: 18,
     firstStringGap: 15,
     standardCount: 6,
@@ -22,7 +22,11 @@ const UNITS = {
   },
   note: {
     noteOverallRadiusModifier: 4, 
-  }
+  },
+  nut: {
+    nutDistanceFromBoardX: 4,
+    nutWidth: 4,
+  },
 }
 
 const getFirstFretXCoord = () => UNITS.fretboard.xOffset + UNITS.frets.firstFretGap;
