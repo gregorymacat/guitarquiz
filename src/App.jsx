@@ -8,6 +8,7 @@ const DEFAULT_SETTINGS = {
   numOfFrets: 12,
   delayBetweenNotes: 2000,
 }
+//TODO: Need to figure out how settings will interface with Guitar class
 
 function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
@@ -28,6 +29,7 @@ function App() {
           // setTotalGuesses(totalGuesses + 1);
           // setGuess('');
           // setIsIncorrect(false);
+          //TODO: Make a function out of this so it doesn't have to repeat, probably needs to be async b/c timeout
           setIsCorrect(true);
           setIsIncorrect(false);
 
@@ -64,6 +66,7 @@ function App() {
     }
   }, [guess]);
 
+  //TODO: Also need to add css for success/failure message
   return (
     <div>
       <section id="navbar">
@@ -78,7 +81,7 @@ function App() {
           <span>Last Guess: {guess}</span>
           <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
         </div>
-        <Display settings={settings} stringCount={settings.numOfStrings} fretCount={settings.numOfFrets} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
+        <Display settings={settings} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
       </section>
     </div>
   )

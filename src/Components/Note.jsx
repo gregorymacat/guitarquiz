@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import displayUnits from '../Helpers/displayUnits.js';
 
 const GUITAR_NOTES = [
   ['E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E'],
@@ -15,16 +14,12 @@ const GUITAR_NOTES = [
 const NOTE_STYLE = {fill: 'rgb(256, 0, 0)', stroke: 'rgb(256, 0, 0)'};
 const CORRECT_NOTE_STYLE = {fill: 'rgb(0, 256, 0)', stroke: 'rgb(0, 256, 0)'};
 
-function Note({settings, setNote, correctCount, isCorrect}) {
+function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) {
   const [currString, setCurrString] = useState();
   const [newNoteX, setNewNoteX] = useState();
   const [newNoteY, setNewNoteY] = useState();
 
-  const {
-    getNoteRadius,
-    calculateMiddleOfFretsX,
-    calculateAnyStringYCoord,
-  } = displayUnits;
+  const radius = guitarMeasurements.calculateNoteRadius();
 
   useEffect(() => {
     chooseRandomNote();
@@ -40,15 +35,13 @@ function Note({settings, setNote, correctCount, isCorrect}) {
     }
   }, [settings.numOfStrings]);
 
-  const radius = getNoteRadius();
-
   function chooseRandomNote() {
     const randomString = (Math.floor(Math.random() * settings.numOfStrings));
     //Adding 1 to include open strings as well as 12th fret (11th index)
     const randomFret = (Math.floor(Math.random() * (settings.numOfFrets + 1)));
 
-    const yCoord = calculateAnyStringYCoord(randomString);
-    const xCoord = calculateMiddleOfFretsX(randomFret);
+    const yCoord = guitarMeasurements.calculateAnyStringYCoord(randomString);
+    const xCoord = guitarMeasurements.calculateMiddleOfFretsX(randomFret);
 
     setCurrString(randomString);
     setNewNoteX(xCoord);
@@ -57,7 +50,7 @@ function Note({settings, setNote, correctCount, isCorrect}) {
   }
 
   return (
-    <circle cx={newNoteX} cy={newNoteY} r={radius} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
+    <circle cx={`${newNoteX}%`} cy={`${newNoteY}%`} r={`${radius}`} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
   )
 }
 

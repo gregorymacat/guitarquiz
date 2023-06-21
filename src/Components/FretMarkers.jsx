@@ -1,45 +1,30 @@
 import React from 'react';
-import displayUnits from '../Helpers/displayUnits';
 
 //Shared style with Frets, doesn't have to be consistent but looks nice for now
-const FRET_STYLE = {fill: 'rgb(239, 239, 239)', stroke: 'rgb(239, 239, 239)'};
+const FRET_STYLE = {fill: 'rgba(205, 205, 205, 0.64)', stroke: 'rgba(205, 205, 205, 0.64)', strokeWidth: '0.5%'};
 
-
-
-function FretMarkers({settings, totalHeight}) {
-  //FRETBOARD MARKERS
+function FretMarkers({guitarMeasurements, settings}) {
   const fretMarkers = [];
-  const {
-    UNITS: {
-      fretboard: {
-        yOffset,
-      },
-      strings: {
-        stringGap,
-      },
-    },
-    getFirstStringYCoord,
-    getFretMarkerRadius,
-    calculateMiddleOfFretsX,
-  } = displayUnits;
-  const boardMiddleYCoord = (totalHeight + yOffset) / 2;
-  const firstStringYCoord = getFirstStringYCoord();
-  const radius = getFretMarkerRadius();
+  const boardMiddleYCoord = guitarMeasurements.getFretboardHeight() / 2;
+  const firstStringYCoord = guitarMeasurements.getFirstStringGap();
 
   for (let i = 1; i <= settings.numOfFrets; i++) {
     if (i % 2 !== 0 && (i !== 1 && i !== 11)) {
-      const currMarkerXCoord = calculateMiddleOfFretsX(i);
-      const currFretMarker =  <circle key={`fret-marker-${i}`} cx={currMarkerXCoord} cy={boardMiddleYCoord} r={radius} style={FRET_STYLE}/>;
+      const currMarkerXCoord = guitarMeasurements.calculateMiddleOfFretsX(i);
+      const currFretMarker =  <circle key={`fret-marker-${i}`} cx={`${currMarkerXCoord}%`} cy={`${boardMiddleYCoord}%`} 
+        r={`${guitarMeasurements.getFretMarkerRadius()}%`} style={FRET_STYLE}/>;
 
       fretMarkers.push(currFretMarker);
     } else if (i === 12) {
       //add two vertically stacked dots instead of just one for the 12th fret
-      const currMarkerXCoord = calculateMiddleOfFretsX(i);
-      const topMarkerYCoord = firstStringYCoord + stringGap;
-      const bottomMarkerYCoord = firstStringYCoord + (stringGap * (settings.numOfStrings - 2));
+      const currMarkerXCoord = guitarMeasurements.calculateMiddleOfFretsX(i);
+      const topMarkerYCoord = firstStringYCoord + guitarMeasurements.getStringGap();
+      const bottomMarkerYCoord = firstStringYCoord + (guitarMeasurements.getStringGap() * (settings.numOfStrings - 2));
 
-      const topFretMarker = <circle key={`fret-marker-${i}-top`} cx={currMarkerXCoord} cy={topMarkerYCoord} r={radius} style={FRET_STYLE}/>;
-      const bottomFretMarker = <circle key={`fret-marker-${i}-bottom`} cx={currMarkerXCoord} cy={bottomMarkerYCoord} r={radius} style={FRET_STYLE}/>;
+      const topFretMarker = <circle key={`fret-marker-${i}-top`} cx={`${currMarkerXCoord}%`} cy={`${topMarkerYCoord}%`} 
+        r={`${guitarMeasurements.getFretMarkerRadius()}%`} style={FRET_STYLE}/>;
+      const bottomFretMarker = <circle key={`fret-marker-${i}-bottom`} cx={`${currMarkerXCoord}%`} cy={`${bottomMarkerYCoord}%`} 
+        r={`${guitarMeasurements.getFretMarkerRadius()}%`} style={FRET_STYLE}/>;
 
       fretMarkers.push(topFretMarker);
       fretMarkers.push(bottomFretMarker);

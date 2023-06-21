@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+//TODO: Need to finish the css for this input, make it look pretty
 function UserInput({setGuess}) {
   const [input, setInput] = useState('');
 
