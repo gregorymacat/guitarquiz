@@ -4,8 +4,11 @@ const STRING_STYLE = {fill: 'rgb(135, 135, 135)', stroke: 'rgb(135, 135, 135)', 
 
 function Strings({guitarMeasurements, settings}) {
   const allStrings = [];
-  const highestString = <line key={'string-1'} style={STRING_STYLE} x1={0} y1={`${guitarMeasurements.getFirstStringGap()}%`}
-    x2={`${guitarMeasurements.getFretboardWidth()}%`} y2={`${guitarMeasurements.getFirstStringGap()}%`}></line>;
+  const fretboardWidth = guitarMeasurements.getFretboardWidth();
+  const xOffset = guitarMeasurements.getXOffset();
+  const firstStringGap = guitarMeasurements.getFirstStringGap();
+  const highestString = <line key={'string-1'} style={STRING_STYLE} x1={`${xOffset}%`} y1={`${firstStringGap}%`}
+    x2={`${fretboardWidth + xOffset}%`} y2={`${firstStringGap}%`}></line>;
 
   for (let i = 0; i < settings.numOfStrings; i++) {
     if (i === 0) {
@@ -14,8 +17,8 @@ function Strings({guitarMeasurements, settings}) {
       console.log('i: ', i, ' || guitarMeasurements.getStringGap() * i: ', guitarMeasurements.getStringGap() * i);
       const nextStringYCoord = guitarMeasurements.getFirstStringGap() + guitarMeasurements.getStringGap() * i;
 
-      const nextString = <line key={`string-${i + 1}`} style={STRING_STYLE} x1={0} y1={`${nextStringYCoord}%`}
-        x2={`${guitarMeasurements.getFretboardWidth()}%`} y2={`${nextStringYCoord}%`}></line>;
+      const nextString = <line key={`string-${i + 1}`} style={STRING_STYLE} x1={`${xOffset}%`} y1={`${nextStringYCoord}%`}
+        x2={`${guitarMeasurements.getFretboardWidth() + xOffset}%`} y2={`${nextStringYCoord}%`}></line>;
 
       allStrings.push(nextString);
     }

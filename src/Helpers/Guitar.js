@@ -6,8 +6,9 @@ class Guitar {
   constructor(fretCount, stringCount) {
     this.fretCount = fretCount;
     this.stringCount = stringCount;
-    this.fretboardWidth = 100;
+    this.fretboardWidth = 95;
     this.fretboardHeight = 100;
+    this.xOffset = 2;
     this.nutWidth = 1;
     this.fretWidth = 3;
     this.stringWidth = 2;
@@ -17,8 +18,10 @@ class Guitar {
     this.fretMarkerRadius = 0.5;
     this.stringGapToNoteRadiusModifier = 1;
   }
+
   getFretboardWidth = () => this.fretboardWidth;
   getFretboardHeight = () => this.fretboardHeight;
+  getXOffset = () => this.xOffset;
   getNutWidth = () => this.nutWidth;
   getFretWidth = () => this.fretWidth;
   getStringWidth = () => this.stringWidth;
@@ -28,7 +31,7 @@ class Guitar {
   getFretGap = () => this.calculateFretGap();
   getStringGap = () => this.calculateStringGap();
   calculateFretGap() {
-    return Math.floor((this.fretboardWidth / (this.fretCount + 1)) * 100)  / 100;
+    return Math.floor((this.fretboardWidth / (this.fretCount + 1)) * 100) / 100;
   }
   calculateStringGap() {
     return Math.floor((((this.fretboardHeight - this.firstStringGap * 2) / (this.stringCount - 1)) * 100)) / 100;
@@ -43,13 +46,13 @@ class Guitar {
    */
   calculateMiddleOfFretsX(currentFretPos) {
     const fretGap = this.calculateFretGap();
-    const previousFret = fretGap * (currentFretPos - 1);
-    const currFret = fretGap * currentFretPos;
+    const previousFret = fretGap * (currentFretPos - 1) + this.xOffset;
+    const currFret = fretGap * currentFretPos + this.xOffset;
 
     if (currentFretPos === 0) {
-      return 0;
+      return this.xOffset;
     } else if (currentFretPos === 1) {
-      return fretGap / 2;
+      return fretGap / 2 + this.xOffset;
     }
   
     return ((previousFret + currFret) / 2);

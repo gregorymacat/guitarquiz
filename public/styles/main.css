@@ -2,7 +2,8 @@ section#main {
   position: absolute;
   height: 95%;
   width: 100%;
-  top: 6%;
+  top: 5%;
+  margin: 20px;
 }
 .user-input-container {
   width: 25%;
