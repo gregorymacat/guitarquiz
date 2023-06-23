@@ -1,4 +1,5 @@
 section#navbar {
+  font-family: 'Roboto', sans-serif;
   height: 6%;
   width: 100%;
   position: absolute;
@@ -43,3 +44,8 @@ section#navbar {
 .options-select-container #string-slider {
   display: block;
 }
+.options-select-container #fret-slider {
+  display: block;
+}
+
+

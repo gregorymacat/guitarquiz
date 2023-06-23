@@ -6,6 +6,8 @@ import Navbar from './Components/Navbar.jsx';
 const DEFAULT_SETTINGS = {
   numOfStrings: 6,
   numOfFrets: 12,
+  minFret: 0,
+  maxFret: 12,
   delayBetweenNotes: 2000,
 }
 //TODO: Need to figure out how settings will interface with Guitar class

@@ -36,9 +36,10 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
   }, [settings.numOfStrings]);
 
   function chooseRandomNote() {
-    const randomString = (Math.floor(Math.random() * settings.numOfStrings));
+    const { minFret, maxFret, numOfStrings } = settings;
+    const randomString = (Math.floor(Math.random() * numOfStrings));
     //Adding 1 to include open strings as well as 12th fret (11th index)
-    const randomFret = (Math.floor(Math.random() * (settings.numOfFrets + 1)));
+    const randomFret = (Math.floor(Math.random() * (maxFret + 1 - minFret) + minFret));
 
     const yCoord = guitarMeasurements.calculateAnyStringYCoord(randomString);
     const xCoord = guitarMeasurements.calculateMiddleOfFretsX(randomFret);

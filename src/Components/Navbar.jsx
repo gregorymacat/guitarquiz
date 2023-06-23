@@ -4,6 +4,8 @@ import Options from './Options.jsx';
 function Navbar({settings, changeSettings}) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [currStringCount, setCurrStringCount] = useState(settings.numOfStrings);
+  const [currMinFret, setCurrMinFret] = useState(settings.minFret);
+  const [currMaxFret, setCurrMaxFret] = useState(settings.maxFret);
 
   const handleClick = (event) => {
     if (event.target.id === 'open-settings-icon') {
@@ -13,7 +15,15 @@ function Navbar({settings, changeSettings}) {
     }
   }
   const handleChange = (event) => {
-    setCurrStringCount(event.target.value);
+    const value = event.target.value;
+
+    if (event.target.id === 'string-count') {
+      setCurrStringCount(value);
+    } else if (event.target.id === 'fret-min') {
+      setCurrMinFret(value);
+    } else if (event.target.id === 'fret-max') {
+      setCurrMaxFret(value)
+    }
 
     //TODO: Update this function so slider updates settings with code below, might need to do on submission instead
     // const settingsCopy = settings;
@@ -45,6 +55,16 @@ function Navbar({settings, changeSettings}) {
               {currStringCount}
             </form> 
             */}
+            <form className="fret-slider">
+              <div>
+                <label for="fret-min">Starting Fret</label>
+                <input id="fret-min" type="range" min="0" max="12" value={currMinFret} onChange={handleChange}></input>
+              </div>
+              <div>
+                <label for="fret-max">Final Fret</label>
+                <input id="fret-max" type="range" min="0" max="12" value={currMaxFret} onChange={handleChange}></input>
+              </div>
+            </form>
           </div>
         </div>
         : null
