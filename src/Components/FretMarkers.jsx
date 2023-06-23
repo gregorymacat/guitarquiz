@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Shared style with Frets, doesn't have to be consistent but looks nice for now
-const FRET_STYLE = {fill: 'rgba(205, 205, 205, 0.64)', stroke: 'rgba(205, 205, 205, 0.64)', strokeWidth: '0.5%'};
+const FRET_STYLE = {fill: 'rgb(205, 205, 205)', stroke: 'rgb(205, 205, 205)', strokeWidth: '0.5%'};
 
 function FretMarkers({guitarMeasurements, settings}) {
   const fretMarkers = [];

@@ -50,7 +50,7 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
   }
 
   return (
-    <circle cx={`${newNoteX}%`} cy={`${newNoteY}%`} r={`${radius}`} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
+    <circle cx={`${newNoteX}%`} cy={`${newNoteY}%`} r={`${radius}%`} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
   )
 }
 

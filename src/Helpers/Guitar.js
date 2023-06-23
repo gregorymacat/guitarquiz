@@ -15,8 +15,8 @@ class Guitar {
     this.stringLength = 100;
     this.firstStringGap = 10;
     this.firstFretGap = 12;
-    this.fretMarkerRadius = 0.5;
-    this.stringGapToNoteRadiusModifier = 1;
+    this.fretMarkerRadius = 1.1;
+    this.stringGapToNoteRadiusModifier = 8;
   }
 
   getFretboardWidth = () => this.fretboardWidth;

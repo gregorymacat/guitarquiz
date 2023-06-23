@@ -77,8 +77,8 @@ function App() {
         <div className="game-container">
           <UserInput setGuess={setGuess}/>
           <div className="guesses-results-container">
-            {isIncorrect ? <b>Incorrect, please try again</b> : null}
-            {isCorrect ? <b>Correct!</b> : null}
+            {isIncorrect ? <b id="incorrect-message">Incorrect, please try again</b> : null}
+            {isCorrect ? <b id="correct-message">Correct!</b> : null}
             <span>Last Guess: {guess}</span>
             <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
           </div>

@@ -5,9 +5,9 @@ section#main {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  height: 95%;
+  height: 94%;
   width: 100%;
-  top: 5%;
+  top: 6%;
   padding: 20px;
   background-color: #222;
 }
@@ -37,7 +37,7 @@ section#main {
   align-items: center;
   height: 16%;
   width: 22%;
-  margin: 0 auto;
+  margin: 5% auto;
 }
 .user-input-container #text-input {
   height: 45%;
@@ -65,6 +65,7 @@ section#main {
   background-color: rgb(68, 67, 153);
 }
 
+
 .guesses-results-container {
   margin-bottom: 5%;
   width: 25%;
@@ -72,6 +73,12 @@ section#main {
 }
 .guesses-results-container span {
   display: block;
+}
+.guesses-results-container #incorrect-message {
+  color: rgb(196, 20, 20);
+}
+.guesses-results-container #correct-message {
+  display: rgb(9, 170, 9);
 }
 
 .guitar-container {
