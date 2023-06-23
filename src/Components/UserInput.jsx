@@ -20,7 +20,7 @@ function UserInput({setGuess}) {
   return (
     <form className="user-input-container" onSubmit={handleSubmit}>
       <input id="text-input" type="text" onChange={handleChange}></input>
-      <input id="text-submit" type="submit" onSubmit={handleSubmit}></input>
+      <button id="text-submit" onClick={handleSubmit}><span>Submit</span></button>
     </form>
   )
 }

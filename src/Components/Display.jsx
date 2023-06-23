@@ -18,7 +18,7 @@ function Display({settings, setNote, correctCount, isCorrect}) {
 
   //TODO: Also need to add css to position the fretboard in the center of the screen
   return (
-    <svg width="75%" height="30%">
+    <svg className="guitar-container">
       <rect style={FRETBOARD_STYLE} x={`${xOffset}%`} y={`${0}%`} width={`${fretboardWidth}%`} height={`${fretboardHeight}%`}></rect>
       <rect style={NUT_STYLE} x={`${xOffset}%`} y={`${0}%`} width={`${nutWidth}%`} height={`${fretboardHeight}%`}></rect>
       <Strings guitarMeasurements={guitarMeasurements} settings={settings} />

@@ -68,22 +68,24 @@ function App() {
 
   //TODO: Also need to add css for success/failure message
   return (
-    <div>
+    <React.Fragment>
       <section id="navbar">
         <Navbar settings={settings} changeSettings={setSettings}></Navbar>
       </section>
       
       <section id="main">
-        <UserInput setGuess={setGuess}/>
-        <div className="guesses-results-container">
-          {isIncorrect ? <b>Incorrect, please try again</b> : null}
-          {isCorrect ? <b>Correct!</b> : null}
-          <span>Last Guess: {guess}</span>
-          <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
+        <div className="game-container">
+          <UserInput setGuess={setGuess}/>
+          <div className="guesses-results-container">
+            {isIncorrect ? <b>Incorrect, please try again</b> : null}
+            {isCorrect ? <b>Correct!</b> : null}
+            <span>Last Guess: {guess}</span>
+            <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
+          </div>
+          <Display settings={settings} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
         </div>
-        <Display settings={settings} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
       </section>
-    </div>
+    </React.Fragment>
   )
 }
 

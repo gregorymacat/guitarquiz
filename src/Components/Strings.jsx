@@ -1,6 +1,6 @@
 import React from 'react';
 
-const STRING_STYLE = {fill: 'rgb(135, 135, 135)', stroke: 'rgb(135, 135, 135)', strokeWidth: '0.5%'};
+const STRING_STYLE = {fill: 'rgb(105, 105, 105)', stroke: 'rgb(105, 105, 105)', strokeWidth: '0.5%'};
 
 function Strings({guitarMeasurements, settings}) {
   const allStrings = [];

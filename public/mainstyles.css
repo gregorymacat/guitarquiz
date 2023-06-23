@@ -3,5 +3,6 @@
 @import "./styles/main.css";
 
 #app {
-  background-color: whitesmoke;
+  background-color: #222;
+  color: rgba(223, 223, 223, 0.93);
 }
