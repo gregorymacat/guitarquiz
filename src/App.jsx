@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { StyledEngineProvider } from '@mui/material';
 import Display from './Components/Display.jsx';
 import UserInput from './Components/UserInput.jsx';
 import Navbar from './Components/Navbar.jsx';
@@ -6,11 +7,13 @@ import Navbar from './Components/Navbar.jsx';
 const DEFAULT_SETTINGS = {
   numOfStrings: 6,
   numOfFrets: 12,
-  minFret: 0,
-  maxFret: 12,
+  fretRange: [0, 12],
   delayBetweenNotes: 2000,
 }
 //TODO: Need to figure out how settings will interface with Guitar class
+const updateStatsFromCorrectGuess = () => {
+  
+}
 
 function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
@@ -27,10 +30,7 @@ function App() {
         const [sharp, flat] = currentNote.split('/');
 
         if (guess === sharp || guess === flat) {
-          // setCorrectCount(correctCount + 1);
-          // setTotalGuesses(totalGuesses + 1);
-          // setGuess('');
-          // setIsIncorrect(false);
+        // if (guess === 'a') {
           //TODO: Make a function out of this so it doesn't have to repeat, probably needs to be async b/c timeout
           setIsCorrect(true);
           setIsIncorrect(false);
@@ -47,10 +47,7 @@ function App() {
         }
       } else {
         if (guess === currentNote) {
-          // setCorrectCount(correctCount + 1);
-          // setTotalGuesses(totalGuesses + 1);
-          // setGuess('');
-          // setIsIncorrect(false);
+        // if (guess === 'a') {
           setIsCorrect(true);
           setIsIncorrect(false);
 
@@ -59,7 +56,7 @@ function App() {
             setCorrectCount(correctCount + 1);
             setTotalGuesses(totalGuesses + 1);
             setIsCorrect(false);
-          }, 3000);
+          }, settings.delayBetweenNotes);
         } else {
           setIsIncorrect(true);
           setTotalGuesses(totalGuesses + 1);
@@ -70,7 +67,7 @@ function App() {
 
   //TODO: Also need to add css for success/failure message
   return (
-    <React.Fragment>
+    <StyledEngineProvider injectFirst>
       <section id="navbar">
         <Navbar settings={settings} changeSettings={setSettings}></Navbar>
       </section>
@@ -87,7 +84,7 @@ function App() {
           <Display settings={settings} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
         </div>
       </section>
-    </React.Fragment>
+    </StyledEngineProvider>
   )
 }
 

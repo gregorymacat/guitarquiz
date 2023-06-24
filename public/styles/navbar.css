@@ -28,6 +28,9 @@ section#navbar {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .options-select-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   z-index: 2;
   right: 0;
@@ -44,8 +47,20 @@ section#navbar {
 .options-select-container #string-slider {
   display: block;
 }
-.options-select-container #fret-slider {
-  display: block;
+.settings-slider {
+  width: 85%;
+}
+.MuiSlider-markLabel {
+  color: #D5D5D5;
+}
+.options-select-container button {
+  height: 5%;
+  width: 25%;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 4%;
+  background-color: rgb(109, 107, 236);
+  color: rgb(226, 226, 226);
 }
 
 

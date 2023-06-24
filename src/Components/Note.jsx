@@ -36,7 +36,8 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
   }, [settings.numOfStrings]);
 
   function chooseRandomNote() {
-    const { minFret, maxFret, numOfStrings } = settings;
+    const { fretRange, numOfStrings } = settings;
+    const [minFret, maxFret] = fretRange;
     const randomString = (Math.floor(Math.random() * numOfStrings));
     //Adding 1 to include open strings as well as 12th fret (11th index)
     const randomFret = (Math.floor(Math.random() * (maxFret + 1 - minFret) + minFret));
