@@ -80,7 +80,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Guitar Note Quiz Screen Shot][product-screenshot]]
 
 
 ### Built With
@@ -191,4 +191,4 @@ Project Link: [https://github.com/gregorymacat/guitarquiz](https://github.com/gr
 [license-url]: https://github.com/gregorymacat/repo/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/gregorymacat
-[product-screenshot]: assets/README/fretboardquizapp.png
+[product-screenshot]: assets/README/guitarquizupdate.png

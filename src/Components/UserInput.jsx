@@ -5,7 +5,6 @@ const formatValidationObject = (bool, msg) => ({ isValid: bool, error: msg });
 function inputValidation(input) {
   const numbersRegex = /\d/;
   const specialCharRegex = /[^a-zA-Z0-9#]+/;
-  const accidentalRegex = /[^b#]/;
 
   if (input.length > 2 || input.length < 1) {
     return formatValidationObject(false, 'Please enter 1 or 2 characters only');
@@ -15,17 +14,17 @@ function inputValidation(input) {
     return formatValidationObject(false, 'No special characters besides \"#\" for sharps');
   } else if (input === input.toLowerCase()) {
     return formatValidationObject(false, 'Only accidentals are lowercase');
-  } else if (input === input.toUpperCase() && input[1] !== '#') {
-    return formatValidationObject(false, 'Only natural notes are uppercase');
-  } else if (input[0] === input[0].toLowerCase()) {
-    return formatValidationObject(false, 'Accidentals (b/#) go second');
   } else if (input === 'B#' || input === 'Cb') {
     return formatValidationObject(false, 'B and C do not have accidentals between them');
   } else if (input === 'E#' || input === 'Fb') {
     return formatValidationObject(false, 'E and F do not have accidentals between them');
   } else if (input.length === 2) {
-    if ((input.charCodeAt(1) > 96 && input.charCodeAt(1) < 123) && input[1] !== 'b') {
+    if (input === input.toUpperCase() && input[1] !== '#') {
+      return formatValidationObject(false, 'Only natural notes are uppercase');
+    } else if ((input.charCodeAt(1) > 96 && input.charCodeAt(1) < 123) && input[1] !== 'b') {
       return formatValidationObject(false, 'Flats are represented by lowercase \"b\"');
+    } else if (input[0] === input[0].toLowerCase()) {
+      return formatValidationObject(false, 'Accidentals (b/#) go second');
     }
   }
   return {isValid: true, error: ''};

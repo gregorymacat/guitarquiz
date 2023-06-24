@@ -150,7 +150,9 @@ function Navbar({settings, changeSettings, resetScore}) {
                 />
               </div>
             </form>
-            <button onClick={resetScore}>Reset Stats</button>
+            <div className="reset-container">
+              <button id="reset-stats" onClick={resetScore}>Reset Stats</button>
+            </div>
             <div className="save-container">
               {
                 showSaved

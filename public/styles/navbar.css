@@ -60,7 +60,7 @@ section#navbar {
   position: absolute;
   right: 1%;
   top: 15%;
-  height: 70%;
+  height: 65%;
   width: 2%
 }
 /* @-webkit-keyframes fade-in {
@@ -152,13 +152,28 @@ section#navbar {
 .MuiSlider-markLabel {
   color: #D5D5D5;
 }
+.reset-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 6%;
+}
+#reset-stats {
+  height: 100%;
+  width: 28%;
+  min-width: 95px;
+  border: none;
+  border-radius: 30px;
+  background-color: rgb(239 16 68);
+  color: rgb(226, 226, 226);
+}
 .save-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 6%;
 }
-.save-container button {
+#save-changes {
   height: 100%;
   width: 28%;
   min-width: 95px;

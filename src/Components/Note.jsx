@@ -15,7 +15,6 @@ const NOTE_STYLE = {fill: 'rgb(181, 26, 26)', stroke: 'rgb(181, 26, 26)'};
 const CORRECT_NOTE_STYLE = {fill: 'rgb(26, 148, 26)', stroke: 'rgb(26, 148, 26)'};
 
 function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) {
-  const [currString, setCurrString] = useState();
   const [newNoteX, setNewNoteX] = useState();
   const [newNoteY, setNewNoteY] = useState();
 
@@ -43,7 +42,6 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
     const yCoord = guitarMeasurements.calculateAnyStringYCoord(randomString);
     const xCoord = guitarMeasurements.calculateMiddleOfFretsX(randomFret);
 
-    setCurrString(randomString);
     setNewNoteX(xCoord);
     setNewNoteY(yCoord);
     setNote(GUITAR_NOTES[randomString][randomFret]);
