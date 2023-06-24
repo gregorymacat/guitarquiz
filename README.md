@@ -18,7 +18,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+<!-- [![Issues][issues-shield]][issues-url] -->
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -181,13 +181,14 @@ See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a l
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+I would greatly appreciate any advice or criticism about this project. Feedback is welcome on any aspect of it and I appreciate anyone who took the time to
+read through this! I hope you have a wonderful day.
 
-1. Fork the Project
+<!-- 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+5. Open a Pull Request -->
 
 
 
@@ -220,7 +221,7 @@ Project Link: [https://github.com/gregorymacat/guitarquiz](https://github.com/gr
 [stars-shield]: https://img.shields.io/github/stars/gregorymacat/repo.svg?style=for-the-badge
 [stars-url]: https://github.com/gregorymacat/repo/stargazers
 [issues-shield]: https://img.shields.io/github/issues/gregorymacat/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/gregorymacat/repo/issues
+[issues-url]: https://github.com/gregorymacat/guitarquiz/issues
 [license-shield]: https://img.shields.io/github/license/gregorymacat/repo.svg?style=for-the-badge
 [license-url]: https://github.com/gregorymacat/repo/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
