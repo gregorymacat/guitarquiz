@@ -63,7 +63,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Installation & Setup</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -79,17 +79,13 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Guitar Note Quiz Screen Shot][product-screenshot]]
-
+![guitarquizupdate (2)](https://github.com/gregorymacat/guitarquiz/assets/83787397/4d7cedf5-d55d-4b63-ba60-50f710b054b2)
 
 ### Built With
-
-* []()
-* []()
-* []()
-
-
+* [![Javascript][Javascript]][Javascript-url]
+* [![Node.js][Node.js]][Node.js-url]
+* [![React][React.js]][React-url]
+* [![Material UI][MaterialUI]][MaterialUI-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -98,32 +94,57 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+I am using:
+- WSL 1
+- Ubuntu 22.04.1 LTS (jammy)
+- node v18.14.0 LTS (hydrogen)
+- Visual Studio Code
 * npm
   ```sh
   npm install npm@latest -g
   ```
 
-### Installation
+<!-- Installation & Setup -->
+### Installation & Setup
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/gregorymacat/guitarquiz.git
+   git clone git@github.com:gregorymacat/guitarquiz.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-
+3. Start the build
+   ```sh
+   npm run build
+   ```
+4. In separate terminal, start development server
+   ```sh
+   npm start
+   ```
+5. Navigate to http://localhost:3000
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+Ability to change settings letting the user choose:
+- How many strings the guitar should have
+- Which frets the notes will appear on/between
+- How long to see feedback for correct answers
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+![image](https://github.com/gregorymacat/guitarquiz/assets/83787397/a8e6f5fa-4655-47d3-81d3-ae7344101dc1)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+It is also possible to reset the counter to get a fresh start. Otherwise, scores are tracked throughout sessions using cookies. These cookies will track settings and scores
+letting multiple sessions be counted together if so desired.
 
+**Make sure to save changes when finished changing settings.**
+
+### Video Preview
+A simple preview of the application and how the quiz works:
+
+
+https://github.com/gregorymacat/guitarquiz/assets/83787397/a7390e45-1720-498d-85e0-d91c7d45b61a
 
 
 <!-- ROADMAP -->
@@ -131,11 +152,31 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a list of proposed features (and known issues).
 
-- Finish README
-- Chord Quiz
+### Features:
+- [ ] More Options
+  - [ ] Tuning
+  - [ ] Naturals/Accidentals Only
+  - [ ] etc.
+- [ ] Sounds
+  - [ ] Note sound
+  - [ ] Congratulatory Sound
+  - [ ] etc.
+- [ ] Add Bass Guitar (maybe other instruments, unlikely though)
+- [ ] Timer
+- [ ] Chord Quiz
+- [ ] User Accounts
+  - [ ] Create user accounts
+  - [ ] Save into database
+  - [ ] Update stats/settings
+  - [ ] Load account on login
+  - [ ] Delete account if desired 
+- [ ] Online Competition Between Users (timed mode)
+- [ ] Probably many more!
+
+### Continuous Improvements:
+- Refactor/remove redundancies, inefficiences, and nonnecessities
 - Refine interface and visuals
-
-
+- Increased documentation
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -155,8 +196,6 @@ Contributions are what make the open source community such an amazing place to b
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
 ## Contact
 
@@ -169,12 +208,7 @@ Project Link: [https://github.com/gregorymacat/guitarquiz](https://github.com/gr
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
-
-
-
+* [https://www.flaticon.com/](https://www.flaticon.com/free-icon/setting_2040504?term=settings&page=1&position=1&origin=tag&related_id=2040504) (Settings Icon)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -191,4 +225,11 @@ Project Link: [https://github.com/gregorymacat/guitarquiz](https://github.com/gr
 [license-url]: https://github.com/gregorymacat/repo/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/gregorymacat
-[product-screenshot]: assets/README/guitarquizupdate.png
+[Javascript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[Javascript-url]: https://www.javascript.com/
+[Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[Node.js-url]: https://nodejs.org/en
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[MaterialUI]: https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white
+[MaterialUI-url]: https://mui.com/
