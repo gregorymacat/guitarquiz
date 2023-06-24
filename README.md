@@ -163,6 +163,7 @@ See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a l
   - [ ] etc.
 - [ ] Add Bass Guitar (maybe other instruments, unlikely though)
 - [ ] Timer
+- [ ] Streaks
 - [ ] Chord Quiz
 - [ ] User Accounts
   - [ ] Create user accounts
