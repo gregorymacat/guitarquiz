@@ -10,7 +10,13 @@ section#navbar {
 .navbar-container {
   height: 100%;
 }
-
+#app-title {
+  position: absolute;
+  left: 1%;
+  bottom: 25%;
+  height: 50%;
+  font-size: 200%;
+}
 .navbar-container img {
   position: absolute;
   right: 1%;

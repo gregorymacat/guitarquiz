@@ -87,6 +87,7 @@ function Navbar({settings, changeSettings}) {
 
   return (
     <div className="navbar-container">
+      <h1 id="app-title">Guitar Notes Quiz</h1>
       <img id="open-settings-icon" onClick={handleClick} src="setting.png"></img>
       {
         settingsOpen ?
