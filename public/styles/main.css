@@ -13,7 +13,9 @@ section#main {
   background-color: #222;
 }
 /* 
-  I like width to be 87.5% of the height for this container
+  I like width to be 87.5% of the height for this container,
+  except the min-width and height which are more about the
+  fretboard than inputs/results
 */
 .game-container {
   display: flex;
@@ -31,37 +33,34 @@ section#main {
         1px 2px 4px 0px rgba(193, 193, 193, 0.28),
         2px 4px 8px 0px rgba(193, 193, 193, 0.28),
         2px 4px 16px 0px rgba(193, 193, 193, 0.28);
-  
 }
 
 .user-input-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  height: 16%;
-  width: 22%;
-  margin: 1% auto;
+  height: 25%;
+  width: 50%;
 }
 .user-input-container #text-input {
   font-family: 'Consolas', sans-serif;
   font-size: 125%;
-  height: 45%;
-  width: 85%;
+  height: 32%;
+  width: 40%;
+  margin-bottom: 2%;
   border-bottom: 1px solid grey;
   border-radius: 30px;
-  margin-bottom: 1%;
   background-color: whitesmoke;
   text-align: center;
-  font-size: 125%;
+  font-size: 1.25vw;
   color: rgb(89, 89, 98);
 }
 .user-input-container #text-submit {
-  height: 40%;
-  width: 50%;
+  height: 28%;
+  width: 18%;
   border: none;
   border-radius: 30px;
-  margin-bottom: 4%;
   background-color: rgb(109, 107, 236);
   color: rgb(226, 226, 226);
 }
@@ -70,6 +69,9 @@ section#main {
 }
 .user-input-container #text-submit:active {
   background-color: rgb(68, 67, 153);
+}
+#invalid-input-warning {
+  margin-bottom: 1%;
 }
 
 

@@ -27,10 +27,8 @@ function App() {
 
     const savedSettings = cookies.get('settings');
     const savedScores = cookies.get('scores');
-    console.log('These are the saved scores: ', savedScores);
 
     if (savedSettings) {
-      console.log('Saved settings: ', savedSettings);
       setSettings(savedSettings);
     }
     if (savedScores) {
@@ -83,11 +81,16 @@ function App() {
     }
   }, [guess]);
 
+  const resetScore = () => {
+    setCorrectCount(0);
+    setTotalGuesses(0);
+  }
+
   //TODO: Also need to add css for success/failure message
   return (
     <StyledEngineProvider injectFirst>
       <section id="navbar">
-        <Navbar settings={settings} changeSettings={setSettings}></Navbar>
+        <Navbar settings={settings} changeSettings={setSettings} resetScore={resetScore}></Navbar>
       </section>
       
       <section id="main">

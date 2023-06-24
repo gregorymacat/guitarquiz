@@ -33,7 +33,7 @@ const delayMarkerLabels = [
   }
 ]
 
-function Navbar({settings, changeSettings}) {
+function Navbar({settings, changeSettings, resetScore}) {
   const [openSettings, setOpenSettings] = useState(false);
   const [closeSettings, setCloseSettings] = useState(false);
   const [currStringCount, setCurrStringCount] = useState(settings.numOfStrings);
@@ -41,8 +41,6 @@ function Navbar({settings, changeSettings}) {
   const [delay, setDelay] = useState(settings.delayBetweenNotes / 1000);
   const [showSaved, setShowSaved] = useState(false);
 
-  console.log('In Nav settings: ', settings);
-  console.log('This is the string count: ', currStringCount);
   async function changeCloseState() {
     setOpenSettings(false);
     setCloseSettings(true);
@@ -152,6 +150,7 @@ function Navbar({settings, changeSettings}) {
                 />
               </div>
             </form>
+            <button onClick={resetScore}>Reset Stats</button>
             <div className="save-container">
               {
                 showSaved
