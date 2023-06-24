@@ -41,6 +41,8 @@ function Navbar({settings, changeSettings}) {
   const [delay, setDelay] = useState(settings.delayBetweenNotes / 1000);
   const [showSaved, setShowSaved] = useState(false);
 
+  console.log('In Nav settings: ', settings);
+  console.log('This is the string count: ', currStringCount);
   async function changeCloseState() {
     setOpenSettings(false);
     setCloseSettings(true);
@@ -130,23 +132,23 @@ function Navbar({settings, changeSettings}) {
               <div className="slider-container">
                 <label for="string-count">Number of Strings</label>
                 <Slider id="string-count" className="settings-slider" ariaLabel="Number of Strings"
-                  value={currStringCount} onChange={handleStringChange}
+                  onChange={handleStringChange}
                   valueLabelDisplay="auto" min={6} max={9}
-                  defaultValue={currStringCount} marks={stringMarkerLabels} 
+                  defaultValue={settings.numOfStrings} marks={stringMarkerLabels} 
                 />
               </div>
               <div className="slider-container">
-                <label for="fret-range">Range of Frets for Notes</label>
+                <label for="fret-range">Fret Range</label>
                 <Slider id="fret-range" className="settings-slider" ariaLabel="Starting Fret"
-                  value={currFretRange} onChange={handleFretChange} valueLabelDisplay="auto"
-                  disableSwap min={0} max={12} marks={fretMarkerLabels}
+                  onChange={handleFretChange} valueLabelDisplay="auto"
+                  defaultValue={settings.fretRange} disableSwap min={0} max={12} marks={fretMarkerLabels}
                 />  
               </div>     
               <div className="slider-container">
-                <label for="delay-range">Congratulations Length (in seconds)</label>
+                <label for="delay-range">Answer Delay (s)</label>
                 <Slider id="delay-range" className="settings-slider" ariaLabel="Amount of Delay" 
-                  value={delay} onChange={handleDelayChange} valueLabelDisplay="auto"
-                  min={1} max={5} defaultValue={delay} marks={delayMarkerLabels}
+                  onChange={handleDelayChange} valueLabelDisplay="auto"
+                  min={1} max={5} defaultValue={settings.delayBetweenNotes / 1000} marks={delayMarkerLabels}
                 />
               </div>
             </form>

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyledEngineProvider } from '@mui/material';
+import Cookies from 'universal-cookie';
+
 import Display from './Components/Display.jsx';
 import UserInput from './Components/UserInput.jsx';
 import Navbar from './Components/Navbar.jsx';
@@ -10,11 +12,6 @@ const DEFAULT_SETTINGS = {
   fretRange: [0, 12],
   delayBetweenNotes: 2000,
 }
-//TODO: Need to figure out how settings will interface with Guitar class
-const updateStatsFromCorrectGuess = (isUserCorrect, updateCorrectness, updateIncorrectness,
-  updateGuess, updateCorrectCount, updateTotalGuesses, guessCount, settings) => {
-  
-}
 
 function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
@@ -24,6 +21,34 @@ function App() {
   const [isIncorrect, setIsIncorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [totalGuesses, setTotalGuesses] = useState(0);
+
+  useEffect(() => {
+    const cookies = new Cookies();
+
+    const savedSettings = cookies.get('settings');
+    const savedScores = cookies.get('scores');
+    console.log('These are the saved scores: ', savedScores);
+
+    if (savedSettings) {
+      console.log('Saved settings: ', savedSettings);
+      setSettings(savedSettings);
+    }
+    if (savedScores) {
+      const { correct = 0, total = 0 } = savedScores;
+      setCorrectCount(correct);
+      setTotalGuesses(total);
+    }
+  }, [])
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    cookies.set('settings', settings);
+  }, [settings]);
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    cookies.set('scores', {correct: correctCount, total: totalGuesses});
+  }, [totalGuesses]);
 
   useEffect(() => {
     async function updateStatsFromCorrectGuess(isUserCorrect) {
