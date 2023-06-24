@@ -42,7 +42,7 @@ function App() {
         setTotalGuesses(totalGuesses + 1);
       }
     }
-    
+
     if (guess !== '') {
       const correctAnswers = [currentNote];
 

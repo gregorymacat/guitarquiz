@@ -28,32 +28,43 @@ const delayMarkerLabels = [
     label: '1',
   },
   {
-    value: 3,
-    label: '3',
+    value: 5,
+    label: '5',
   }
 ]
 
 function Navbar({settings, changeSettings}) {
-  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
+  const [closeSettings, setCloseSettings] = useState(false);
   const [currStringCount, setCurrStringCount] = useState(settings.numOfStrings);
   const [currFretRange, setCurrFretRange] = useState(settings.fretRange);
   const [delay, setDelay] = useState(settings.delayBetweenNotes / 1000);
   const [showSaved, setShowSaved] = useState(false);
 
-  const handleClick = (event) => {
+  async function changeCloseState() {
+    setOpenSettings(false);
+    setCloseSettings(true);
+    //*IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
+    //*#options-select-container-slide-in(out) and #options-modal-background-fade-in(out)
+    await setTimeout(() => {
+      setCloseSettings(false);
+    }, 750);
+  }
+
+  function handleClick(event) {
     if (event.target.id === 'open-settings-icon') {
-      setSettingsOpen(true);
+      setOpenSettings(true);
     } else if (event.target.id === 'close-settings-icon') {
-      setSettingsOpen(false);
-    } else if (event.target.id === 'options-modal-background') {
-      setSettingsOpen(false);
+      changeCloseState();
+    } else if (event.target.id === 'options-modal-background-fade-in') {
+      changeCloseState();
     }
   }
-  const handleStringChange = (event, newValue) => {
+  function handleStringChange(event, newValue) {
     setCurrStringCount(newValue);
   }
 
-  const handleFretChange = (event, newValue, activeThumb) => {
+  function handleFretChange(event, newValue, activeThumb) {
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -73,11 +84,11 @@ function Navbar({settings, changeSettings}) {
     }
   }
 
-  const handleDelayChange = (event, newValue) => {
+  function handleDelayChange(event, newValue) {
     setDelay(newValue);
   }
 
-  const handleSaveChanges = async () => {
+  async function handleSaveChanges () {
     setShowSaved(true);
     
     changeSettings(prevState => ({
@@ -87,20 +98,33 @@ function Navbar({settings, changeSettings}) {
       delayBetweenNotes: delay * 1000,
     }));
 
-    //!IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
+    //*IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
     await setTimeout(() => {
       setShowSaved(false);
     }, 2000);
   }
+
+  const modalClass = 
+    openSettings ? "options-select-container-slide-in" 
+    : closeSettings ? "options-select-container-slide-out"
+    : null;
+  const modalBackgroundClass =
+    openSettings ? "options-modal-background-fade-in" 
+    : closeSettings ? "options-modal-background-fade-out"
+    : null;
 
   return (
     <div className="navbar-container">
       <h1 id="app-title">Guitar Notes Quiz</h1>
       <img id="open-settings-icon" onClick={handleClick} src="setting.png"></img>
       {
-        settingsOpen ?
-        <div id="options-modal-background">
-          <div className="options-select-container">
+        modalBackgroundClass ?
+          <div id={modalBackgroundClass} onClick={handleClick}></div>
+          : null
+      }
+      {
+        modalClass ?
+          <div id={modalClass}>
             <span id="close-settings-icon" onClick={handleClick}>Close</span>
             <form id="all-settings-container">
               <div className="slider-container">
@@ -122,7 +146,7 @@ function Navbar({settings, changeSettings}) {
                 <label for="delay-range">Congratulations Length (in seconds)</label>
                 <Slider id="delay-range" className="settings-slider" ariaLabel="Amount of Delay" 
                   value={delay} onChange={handleDelayChange} valueLabelDisplay="auto"
-                  min={1} max={3} defaultValue={delay} marks={delayMarkerLabels}
+                  min={1} max={5} defaultValue={delay} marks={delayMarkerLabels}
                 />
               </div>
             </form>
@@ -135,7 +159,6 @@ function Navbar({settings, changeSettings}) {
               <button id="save-changes" onClick={handleSaveChanges}>Save Changes</button> 
             </div>
           </div>
-        </div>
         : null
       }
     </div>

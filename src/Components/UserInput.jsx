@@ -14,12 +14,13 @@ function UserInput({setGuess}) {
     event.preventDefault();
 
     //Need to remove whitespace from guesses, general sanitation of input needed
+    setInput('')
     setGuess(input);
   }
 
   return (
     <form className="user-input-container" onSubmit={handleSubmit}>
-      <input id="text-input" type="text" onChange={handleChange}></input>
+      <input id="text-input" type="text" onChange={handleChange} value={input}></input>
       <button id="text-submit" onClick={handleSubmit}><span>Submit</span></button>
     </form>
   )

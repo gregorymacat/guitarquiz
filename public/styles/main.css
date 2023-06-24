@@ -83,11 +83,11 @@ section#main {
   display: block;
 }
 .guesses-results-container #incorrect-message {
-  color: rgb(196, 20, 20);
-  font-size: 160%;
+  color: rgb(181, 26, 26);
+  font-size: 145%;
 }
 .guesses-results-container #correct-message {
-  color: rgb(9, 170, 9);
+  color: rgb(26, 205, 26);
   font-size: 160%;
 }
 

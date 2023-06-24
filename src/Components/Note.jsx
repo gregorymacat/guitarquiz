@@ -11,8 +11,8 @@ const GUITAR_NOTES = [
   ['F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb'],
   ['C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B', 'C', 'C#/Db'],
 ];
-const NOTE_STYLE = {fill: 'rgb(256, 0, 0)', stroke: 'rgb(256, 0, 0)'};
-const CORRECT_NOTE_STYLE = {fill: 'rgb(0, 256, 0)', stroke: 'rgb(0, 256, 0)'};
+const NOTE_STYLE = {fill: 'rgb(181, 26, 26)', stroke: 'rgb(181, 26, 26)'};
+const CORRECT_NOTE_STYLE = {fill: 'rgb(26, 148, 26)', stroke: 'rgb(26, 148, 26)'};
 
 function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) {
   const [currString, setCurrString] = useState();
