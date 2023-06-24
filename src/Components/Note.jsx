@@ -30,10 +30,8 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
   }, [correctCount])
 
   useEffect(() => {
-    if (currString + 1 > settings.numOfStrings) {
-      chooseRandomNote();
-    }
-  }, [settings.numOfStrings]);
+    chooseRandomNote();
+  }, [settings.numOfStrings, settings.fretRange]);
 
   function chooseRandomNote() {
     const { fretRange, numOfStrings } = settings;

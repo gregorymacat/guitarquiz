@@ -11,7 +11,8 @@ const DEFAULT_SETTINGS = {
   delayBetweenNotes: 2000,
 }
 //TODO: Need to figure out how settings will interface with Guitar class
-const updateStatsFromCorrectGuess = () => {
+const updateStatsFromCorrectGuess = (isUserCorrect, updateCorrectness, updateIncorrectness,
+  updateGuess, updateCorrectCount, updateTotalGuesses, guessCount, settings) => {
   
 }
 
@@ -25,43 +26,35 @@ function App() {
   const [totalGuesses, setTotalGuesses] = useState(0);
 
   useEffect(() => {
+    async function updateStatsFromCorrectGuess(isUserCorrect) {
+      if (isUserCorrect) {
+        setIsCorrect(true);
+        setIsIncorrect(false);
+    
+        await setTimeout(() => {
+          setGuess('');
+          setCorrectCount(correctCount + 1);
+          setTotalGuesses(totalGuesses + 1);
+          setIsCorrect(false);
+        }, settings.delayBetweenNotes);
+      } else {
+        setIsIncorrect(true);
+        setTotalGuesses(totalGuesses + 1);
+      }
+    }
+    
     if (guess !== '') {
+      const correctAnswers = [currentNote];
+
       if (currentNote.includes('/')) {
         const [sharp, flat] = currentNote.split('/');
-
-        if (guess === sharp || guess === flat) {
-        // if (guess === 'a') {
-          //TODO: Make a function out of this so it doesn't have to repeat, probably needs to be async b/c timeout
-          setIsCorrect(true);
-          setIsIncorrect(false);
-
-          setTimeout(() => {
-            setGuess('');
-            setCorrectCount(correctCount + 1);
-            setTotalGuesses(totalGuesses + 1);
-            setIsCorrect(false);
-          }, settings.delayBetweenNotes);
-        } else {
-          setIsIncorrect(true);
-          setTotalGuesses(totalGuesses + 1);
-        }
-      } else {
-        if (guess === currentNote) {
-        // if (guess === 'a') {
-          setIsCorrect(true);
-          setIsIncorrect(false);
-
-          setTimeout(() => {
-            setGuess('');
-            setCorrectCount(correctCount + 1);
-            setTotalGuesses(totalGuesses + 1);
-            setIsCorrect(false);
-          }, settings.delayBetweenNotes);
-        } else {
-          setIsIncorrect(true);
-          setTotalGuesses(totalGuesses + 1);
-        }
+        correctAnswers.push(sharp);
+        correctAnswers.push(flat);
       }
+
+      const isAnswerCorrect = correctAnswers.includes(guess);
+
+      updateStatsFromCorrectGuess(isAnswerCorrect);
     }
   }, [guess]);
 

@@ -1,3 +1,8 @@
+@keyframes fadeInAndOut {
+  0%, 100% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+}
+
 section#navbar {
   font-family: 'Roboto', sans-serif;
   height: 6%;
@@ -24,7 +29,7 @@ section#navbar {
   height: 70%;
   width: 2%
 }
-.options-modal-background {
+#options-modal-background {
   position: fixed;
   z-index: 2;
   top: 0;
@@ -33,6 +38,7 @@ section#navbar {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .options-select-container {
   display: flex;
   flex-direction: column;
@@ -47,26 +53,43 @@ section#navbar {
   box-shadow: -4px 0px 8px 2px rgba(193, 193, 193, 0.28);
   border-radius: 25px 0px 0px 25px;
 }
-.options-select-container * {
+.options-select-container label, form {
   margin: 5%;
 }
-.options-select-container #string-slider {
-  display: block;
+#all-settings-container {
+  height: 75%;
+}
+.slider-container {
+  height: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .settings-slider {
   width: 85%;
+  margin-top: 4%;
+  margin-bottom: 0;
 }
 .MuiSlider-markLabel {
   color: #D5D5D5;
 }
-.options-select-container button {
-  height: 5%;
-  width: 25%;
+.save-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 6%;
+}
+.save-container button {
+  height: 100%;
+  width: 28%;
   border: none;
   border-radius: 30px;
-  margin-bottom: 4%;
   background-color: rgb(109, 107, 236);
   color: rgb(226, 226, 226);
 }
+.save-container span {
+  margin-right: 4%;
+  animation: fadeInAndOut 2s;
+}
+
 
 

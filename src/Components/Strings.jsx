@@ -14,7 +14,6 @@ function Strings({guitarMeasurements, settings}) {
     if (i === 0) {
       allStrings.push(highestString);
     } else {
-      console.log('i: ', i, ' || guitarMeasurements.getStringGap() * i: ', guitarMeasurements.getStringGap() * i);
       const nextStringYCoord = guitarMeasurements.getFirstStringGap() + guitarMeasurements.getStringGap() * i;
 
       const nextString = <line key={`string-${i + 1}`} style={STRING_STYLE} x1={`${xOffset}%`} y1={`${nextStringYCoord}%`}
