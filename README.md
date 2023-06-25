@@ -66,7 +66,7 @@
         <li><a href="#installation--setup">Installation & Setup</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#usage--demo">Usage & Demo</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -127,7 +127,7 @@ I am using:
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage & Demo
 Ability to change settings letting the user choose:
 - How many strings the guitar should have
 - Which frets the notes will appear on/between
