@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/gregorymacat/guitarquiz">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/README/logo-no-background.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Guitar Notes Quiz</h3>
@@ -235,3 +235,4 @@ Project Link: [https://github.com/gregorymacat/guitarquiz](https://github.com/gr
 [React-url]: https://reactjs.org/
 [MaterialUI]: https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white
 [MaterialUI-url]: https://mui.com/
+[Logo-Image]: ./assets/README/logo-no-background.png

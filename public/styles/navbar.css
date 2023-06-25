@@ -61,7 +61,8 @@ section#navbar {
   right: 1%;
   top: 15%;
   height: 65%;
-  width: 2%
+  width: 2%;
+  min-width: 30px;
 }
 /* @-webkit-keyframes fade-in {
   100% { right: 0; }
