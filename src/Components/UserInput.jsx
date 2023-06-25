@@ -31,17 +31,17 @@ function inputValidation(input) {
 }
 
 //TODO: Need to finish the css for this input, make it look pretty
-function UserInput({totalGuesses, setGuess}) {
+function UserInput({needNewNote, setGuess}) {
   const [input, setInput] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (totalGuesses === 0) {
+    if (needNewNote) {
       setIsInvalid(false);
       setErrorMessage('');
     }
-  }, [totalGuesses]);
+  }, [needNewNote]);
 
   const handleChange = (event) => {
     const currentInput = event.target.value;

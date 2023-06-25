@@ -28,11 +28,7 @@ function Note({guitarMeasurements, settings, setNote, isCorrect, needNewNote, se
     if (needNewNote) {
       chooseRandomNote();
     }
-  }, [needNewNote])
-
-  useEffect(() => {
-    chooseRandomNote();
-  }, [settings.numOfStrings, settings.fretRange]);
+  }, [needNewNote]);
 
   function chooseRandomNote() {
     const { fretRange, numOfStrings } = settings;

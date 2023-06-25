@@ -183,7 +183,7 @@ section#navbar {
   background-color: rgb(109, 107, 236);
   color: rgb(226, 226, 226);
 }
-.save-container span {
+#save-confirmation-text {
   margin-right: 4%;
-  animation: fadeInAndOut 2s;
+  animation: fadeInAndOut 1s;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from '@mui/material/Slider';
 import Options from './Options.jsx';
 
@@ -33,13 +33,19 @@ const delayMarkerLabels = [
   }
 ]
 
-function Navbar({settings, changeSettings, resetScore}) {
+function Navbar({settings, updateSettings, resetScore}) {
   const [openSettings, setOpenSettings] = useState(false);
   const [closeSettings, setCloseSettings] = useState(false);
   const [currStringCount, setCurrStringCount] = useState(settings.numOfStrings);
   const [currFretRange, setCurrFretRange] = useState(settings.fretRange);
   const [delay, setDelay] = useState(settings.delayBetweenNotes / 1000);
   const [showSaved, setShowSaved] = useState(false);
+
+  useEffect(() => {
+    setCurrStringCount(settings.numOfStrings);
+    setCurrFretRange(settings.fretRange);
+    setDelay(settings.delayBetweenNotes / 1000);
+  }, [settings]);
 
   async function changeCloseState() {
     setOpenSettings(false);
@@ -89,19 +95,24 @@ function Navbar({settings, changeSettings, resetScore}) {
   }
 
   async function handleSaveChanges () {
-    setShowSaved(true);
-    
-    changeSettings(prevState => ({
-      ...prevState,
+    const newSettings = {
+      ...settings,
       numOfStrings: currStringCount,
       fretRange: currFretRange,
       delayBetweenNotes: delay * 1000,
-    }));
+    }
 
-    //*IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
-    await setTimeout(() => {
-      setShowSaved(false);
-    }, 2000);
+    if (JSON.stringify(settings) !== JSON.stringify(newSettings)) {
+      setShowSaved(true);
+
+      updateSettings(currStringCount, currFretRange, delay);
+
+      //*IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
+      //*#save-confirmation-text
+      await setTimeout(() => {
+        setShowSaved(false);
+      }, 1000);
+    }
   }
 
   const modalClass = 
@@ -128,23 +139,23 @@ function Navbar({settings, changeSettings, resetScore}) {
             <span id="close-settings-icon" onClick={handleClick}>Close</span>
             <form id="all-settings-container">
               <div className="slider-container">
-                <label for="string-count">Number of Strings</label>
-                <Slider id="string-count" className="settings-slider" ariaLabel="Number of Strings"
+                <label htmlFor="string-count">Number of Strings</label>
+                <Slider id="string-count" className="settings-slider" getAriaLabel={() => "Number of Strings"}
                   onChange={handleStringChange}
                   valueLabelDisplay="auto" min={6} max={9}
                   defaultValue={settings.numOfStrings} marks={stringMarkerLabels} 
                 />
               </div>
               <div className="slider-container">
-                <label for="fret-range">Fret Range</label>
-                <Slider id="fret-range" className="settings-slider" ariaLabel="Starting Fret"
+                <label htmlFor="fret-range">Fret Range</label>
+                <Slider id="fret-range" className="settings-slider" getAriaLabel={() => "Starting Fret"}
                   onChange={handleFretChange} valueLabelDisplay="auto"
                   defaultValue={settings.fretRange} disableSwap min={0} max={12} marks={fretMarkerLabels}
                 />  
               </div>     
               <div className="slider-container">
-                <label for="delay-range">Answer Delay (s)</label>
-                <Slider id="delay-range" className="settings-slider" ariaLabel="Amount of Delay" 
+                <label htmlFor="delay-range">Answer Delay (s)</label>
+                <Slider id="delay-range" className="settings-slider" getAriaLabel={() => "Amount of Delay"}
                   onChange={handleDelayChange} valueLabelDisplay="auto"
                   min={1} max={5} defaultValue={settings.delayBetweenNotes / 1000} marks={delayMarkerLabels}
                 />

@@ -92,16 +92,29 @@ function App() {
     setNeedNewNote(true);
   }
 
+  const updateSettings = (newStringCount, newFretRange, newDelay) => {
+    setSettings(prevState => ({
+      ...prevState,
+      numOfStrings: newStringCount,
+      fretRange: newFretRange,
+      delayBetweenNotes: newDelay * 1000,
+    }));
+    setIsIncorrect(false);
+    setIsCorrect(false);
+    setGuess('')
+    setNeedNewNote(true);
+  }
+
   //TODO: Also need to add css for success/failure message
   return (
     <StyledEngineProvider injectFirst>
       <section id="navbar">
-        <Navbar settings={settings} changeSettings={setSettings} resetScore={resetScore}></Navbar>
+        <Navbar settings={settings} updateSettings={updateSettings} resetScore={resetScore}></Navbar>
       </section>
       
       <section id="main">
         <div className="game-container">
-          <UserInput totalGuesses={totalGuesses} setGuess={setGuess}/>
+          <UserInput needNewNote={needNewNote} setGuess={setGuess}/>
           <div className="guesses-results-container">
             {isIncorrect ? <b id="incorrect-message">Incorrect, please try again</b> : null}
             {isCorrect ? <b id="correct-message">Correct!</b> : null}
