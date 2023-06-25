@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/gregorymacat/guitarquiz">
-    <img src="assets/README/logo-no-background.png" alt="Logo" width="80" height="80">
+    <img src="assets/README/logo-no-background.png" alt="Logo" width="250" height="250">
   </a>
 
   <h3 align="center">Guitar Notes Quiz</h3>
@@ -39,7 +39,7 @@
     <a href="https://github.com/gregorymacat/guitarquiz"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/gregorymacat/guitarquiz">View Demo</a>
+    <a href="#video-demonstrations">View Demo</a>
     ·
     <a href="https://github.com/gregorymacat/guitarquiz/issues">Report Bug</a>
     ·
@@ -135,17 +135,16 @@ Ability to change settings letting the user choose:
 
 ![image](https://github.com/gregorymacat/guitarquiz/assets/83787397/a8e6f5fa-4655-47d3-81d3-ae7344101dc1)
 
-It is also possible to reset the counter to get a fresh start. Otherwise, scores are tracked throughout sessions using cookies. These cookies will track settings and scores
+It is also possible to reset the counter with the "Reset Stats" button to get a fresh start. Otherwise, scores are tracked throughout sessions using cookies. These cookies will track settings and scores
 letting multiple sessions be counted together if so desired.
 
 **Make sure to save changes when finished changing settings.**
 
-### Video Preview
-A simple preview of the application and how the quiz works:
+### Video Demonstrations
 
+Example quiz and settings adjustments:
 
-https://github.com/gregorymacat/guitarquiz/assets/83787397/a7390e45-1720-498d-85e0-d91c7d45b61a
-
+https://github.com/gregorymacat/guitarquiz/assets/83787397/814e8d34-7b14-4e9b-9f6c-2539fc9d64c6
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -164,7 +163,6 @@ See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a l
 - [ ] Add Bass Guitar (maybe other instruments, unlikely though)
 - [ ] Timer
 - [ ] Streaks
-- [ ] Chord Quiz
 - [ ] User Accounts
   - [ ] Create user accounts
   - [ ] Save into database
@@ -172,6 +170,7 @@ See the [open issues](https://github.com/gregorymacat/guitarquiz/issues) for a l
   - [ ] Load account on login
   - [ ] Delete account if desired 
 - [ ] Online Competition Between Users (timed mode)
+- [ ] Chord Quiz
 - [ ] Probably many more!
 
 ### Continuous Improvements:
