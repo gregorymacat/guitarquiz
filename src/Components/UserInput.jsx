@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const formatValidationObject = (bool, msg) => ({ isValid: bool, error: msg });
 
@@ -31,10 +31,17 @@ function inputValidation(input) {
 }
 
 //TODO: Need to finish the css for this input, make it look pretty
-function UserInput({setGuess}) {
+function UserInput({totalGuesses, setGuess}) {
   const [input, setInput] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (totalGuesses === 0) {
+      setIsInvalid(false);
+      setErrorMessage('');
+    }
+  }, [totalGuesses]);
 
   const handleChange = (event) => {
     const currentInput = event.target.value;

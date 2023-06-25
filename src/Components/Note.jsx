@@ -14,7 +14,7 @@ const GUITAR_NOTES = [
 const NOTE_STYLE = {fill: 'rgb(181, 26, 26)', stroke: 'rgb(181, 26, 26)'};
 const CORRECT_NOTE_STYLE = {fill: 'rgb(26, 148, 26)', stroke: 'rgb(26, 148, 26)'};
 
-function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) {
+function Note({guitarMeasurements, settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
   const [newNoteX, setNewNoteX] = useState();
   const [newNoteY, setNewNoteY] = useState();
 
@@ -25,8 +25,10 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
   }, []);
 
   useEffect(() => {
-    if (correctCount !== 0) chooseRandomNote();
-  }, [correctCount])
+    if (needNewNote) {
+      chooseRandomNote();
+    }
+  }, [needNewNote])
 
   useEffect(() => {
     chooseRandomNote();
@@ -45,6 +47,8 @@ function Note({guitarMeasurements, settings, setNote, correctCount, isCorrect}) 
     setNewNoteX(xCoord);
     setNewNoteY(yCoord);
     setNote(GUITAR_NOTES[randomString][randomFret]);
+
+    setNeedNewNote(false);
   }
 
   return (

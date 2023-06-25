@@ -8,7 +8,7 @@ import Guitar from '../Helpers/Guitar.js';
 const FRETBOARD_STYLE = {fill: 'rgb(150, 75, 0)', stroke: 'rgb(0, 0, 0)'};
 const NUT_STYLE = {fill: 'rgb(0, 0, 0)', stroke: 'rgb(0, 0, 0)'};
 
-function Display({settings, setNote, correctCount, isCorrect}) {
+function Display({settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
 
   const guitarMeasurements = new Guitar(settings.numOfFrets, settings.numOfStrings);
   const fretboardWidth =  guitarMeasurements.getFretboardWidth();
@@ -19,12 +19,16 @@ function Display({settings, setNote, correctCount, isCorrect}) {
   //TODO: Also need to add css to position the fretboard in the center of the screen
   return (
     <svg className="guitar-container">
-      <rect style={FRETBOARD_STYLE} x={`${xOffset}%`} y={`${0}%`} width={`${fretboardWidth}%`} height={`${fretboardHeight}%`}></rect>
-      <rect style={NUT_STYLE} x={`${xOffset}%`} y={`${0}%`} width={`${nutWidth}%`} height={`${fretboardHeight}%`}></rect>
+      <rect style={FRETBOARD_STYLE} x={`${xOffset}%`} y={`${0}%`}
+        width={`${fretboardWidth}%`} height={`${fretboardHeight}%`}></rect>
+      <rect style={NUT_STYLE} x={`${xOffset}%`} y={`${0}%`}
+        width={`${nutWidth}%`} height={`${fretboardHeight}%`}></rect>
       <Strings guitarMeasurements={guitarMeasurements} settings={settings} />
       <Frets guitarMeasurements={guitarMeasurements} settings={settings}/>
       <FretMarkers guitarMeasurements={guitarMeasurements} settings={settings}/>
-      <Note guitarMeasurements={guitarMeasurements} settings={settings} setNote={setNote} correctCount={correctCount} isCorrect={isCorrect}/>      
+      <Note guitarMeasurements={guitarMeasurements} settings={settings}
+        setNote={setNote} isCorrect={isCorrect} needNewNote={needNewNote}
+        setNeedNewNote={setNeedNewNote}/>      
     </svg>
   )
 }

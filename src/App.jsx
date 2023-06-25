@@ -16,6 +16,7 @@ const DEFAULT_SETTINGS = {
 function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [currentNote, setCurrentNote] = useState('');
+  const [needNewNote, setNeedNewNote] = useState(false);
   const [guess, setGuess] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
   const [isIncorrect, setIsIncorrect] = useState(false);
@@ -49,15 +50,16 @@ function App() {
   }, [totalGuesses]);
 
   useEffect(() => {
-    async function updateStatsFromCorrectGuess(isUserCorrect) {
+    async function updateStatsFromGuess(isUserCorrect) {
       if (isUserCorrect) {
         setIsCorrect(true);
         setIsIncorrect(false);
+        setCorrectCount(correctCount + 1);
+        setTotalGuesses(totalGuesses + 1);
     
         await setTimeout(() => {
           setGuess('');
-          setCorrectCount(correctCount + 1);
-          setTotalGuesses(totalGuesses + 1);
+          setNeedNewNote(true);
           setIsCorrect(false);
         }, settings.delayBetweenNotes);
       } else {
@@ -77,13 +79,17 @@ function App() {
 
       const isAnswerCorrect = correctAnswers.includes(guess);
 
-      updateStatsFromCorrectGuess(isAnswerCorrect);
+      updateStatsFromGuess(isAnswerCorrect);
     }
   }, [guess]);
 
   const resetScore = () => {
     setCorrectCount(0);
     setTotalGuesses(0);
+    setIsIncorrect(false);
+    setIsCorrect(false);
+    setGuess('');
+    setNeedNewNote(true);
   }
 
   //TODO: Also need to add css for success/failure message
@@ -95,14 +101,15 @@ function App() {
       
       <section id="main">
         <div className="game-container">
-          <UserInput setGuess={setGuess}/>
+          <UserInput totalGuesses={totalGuesses} setGuess={setGuess}/>
           <div className="guesses-results-container">
             {isIncorrect ? <b id="incorrect-message">Incorrect, please try again</b> : null}
             {isCorrect ? <b id="correct-message">Correct!</b> : null}
             <span>Last Guess: {guess}</span>
             <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
           </div>
-          <Display settings={settings} setNote={setCurrentNote} correctCount={correctCount} isCorrect={isCorrect}/>
+          <Display settings={settings} setNote={setCurrentNote} isCorrect={isCorrect} 
+            needNewNote={needNewNote} setNeedNewNote={setNeedNewNote}/>
         </div>
       </section>
     </StyledEngineProvider>
