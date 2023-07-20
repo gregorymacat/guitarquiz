@@ -105,7 +105,6 @@ function App() {
     setNeedNewNote(true);
   }
 
-  //TODO: Also need to add css for success/failure message
   return (
     <StyledEngineProvider injectFirst>
       <section id="navbar">

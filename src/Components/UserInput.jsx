@@ -30,7 +30,6 @@ function inputValidation(input) {
   return {isValid: true, error: ''};
 }
 
-//TODO: Need to finish the css for this input, make it look pretty
 function UserInput({needNewNote, setGuess}) {
   const [input, setInput] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
@@ -52,7 +51,6 @@ function UserInput({needNewNote, setGuess}) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //Need to remove whitespace from guesses, general sanitation of input needed
     const formattedInput = input.trim();
 
     const {isValid, error} = inputValidation(formattedInput);
