@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Strings from './Strings.jsx';
 import Frets from './Frets.jsx';
 import FretMarkers from './FretMarkers.jsx';
@@ -16,7 +16,6 @@ function Display({settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
   const xOffset = guitarMeasurements.getXOffset();
   const nutWidth = guitarMeasurements.getNutWidth();
 
-  //TODO: Also need to add css to position the fretboard in the center of the screen
   return (
     <svg className="guitar-container">
       <rect style={FRETBOARD_STYLE} x={`${xOffset}%`} y={`${0}%`}
