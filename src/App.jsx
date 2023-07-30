@@ -110,7 +110,6 @@ function App() {
       <section id="navbar">
         <Navbar settings={settings} updateSettings={updateSettings} resetScore={resetScore}></Navbar>
       </section>
-      
       <section id="main">
         <div className="game-container">
           <UserInput needNewNote={needNewNote} setGuess={setGuess}/>
