@@ -19,10 +19,10 @@ describe('Note component with props', () => {
   
   it ('Should be located centered between 0 and 100', () => {
     const wrapper = shallow(<Note guitarMeasurements={measurements} settings={DEFAULT_SETTINGS}
-      setNote={setNote} isCorrect={isCorrect} needNewNote={needNewNote}
-      setNeedNewNote={setNeedNewNote}/>);
+      setNote={() => {}} isCorrect={() => {}} needNewNote={true}
+      setNeedNewNote={() => {}}/>);
     const circle = wrapper.find('circle');
-    console.log(circle);
+    // console.log(circle);
     // expect(wrapper.find())
   })
 }) 
