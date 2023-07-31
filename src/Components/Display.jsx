@@ -8,7 +8,7 @@ import Guitar from '../Helpers/Guitar.js';
 const FRETBOARD_STYLE = {fill: 'rgb(150, 75, 0)', stroke: 'rgb(0, 0, 0)'};
 const NUT_STYLE = {fill: 'rgb(0, 0, 0)', stroke: 'rgb(0, 0, 0)'};
 
-function Display({settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
+function Display({settings, setNote, playNote, isCorrect, needNewNote, setNeedNewNote}) {
 
   const guitarMeasurements = new Guitar(settings.numOfFrets, settings.numOfStrings);
   const fretboardWidth =  guitarMeasurements.getFretboardWidth();
@@ -26,7 +26,7 @@ function Display({settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
       <Frets guitarMeasurements={guitarMeasurements} settings={settings}/>
       <FretMarkers guitarMeasurements={guitarMeasurements} settings={settings}/>
       <Note guitarMeasurements={guitarMeasurements} settings={settings}
-        setNote={setNote} isCorrect={isCorrect} needNewNote={needNewNote}
+        setNote={setNote} playNote={playNote} isCorrect={isCorrect} needNewNote={needNewNote}
         setNeedNewNote={setNeedNewNote}/>      
     </svg>
   )

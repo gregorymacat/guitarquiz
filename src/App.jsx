@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyledEngineProvider } from '@mui/material';
 import Cookies from 'universal-cookie';
+import MIDISounds from 'midi-sounds-react';
 
 import Display from './Components/Display.jsx';
 import UserInput from './Components/UserInput.jsx';
@@ -13,15 +14,34 @@ const DEFAULT_SETTINGS = {
   delayBetweenNotes: 2000,
 }
 
+const fretsToNextOctave = 12;
+
+const D = 2;
+const E = 4
+const G = 7;
+const A = 9;
+const B = 11;
+
+const stringsToMidiCode = {
+  1: 5 * fretsToNextOctave + E,
+  2: 4 * fretsToNextOctave + B,
+  3: 4 * fretsToNextOctave + G,
+  4: 4 * fretsToNextOctave + D,
+  5: 3 * fretsToNextOctave + A,
+  6: 3 * fretsToNextOctave + E,
+}
+
 function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
-  const [currentNote, setCurrentNote] = useState('');
+  const [currentNoteInfo, setCurrentNoteInfo] = useState({});
   const [needNewNote, setNeedNewNote] = useState(false);
   const [guess, setGuess] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
   const [isIncorrect, setIsIncorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [totalGuesses, setTotalGuesses] = useState(0);
+
+  let midiRef;
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -69,6 +89,7 @@ function App() {
     }
 
     if (guess !== '') {
+      const currentNote = currentNoteInfo.noteValue;
       const correctAnswers = [currentNote];
 
       if (currentNote.includes('/')) {
@@ -105,21 +126,36 @@ function App() {
     setNeedNewNote(true);
   }
 
+  function playNote(string, fret) {
+    //maybe need to set volume on midisounds directly
+    if (!string || !fret) {
+      const {noteString, noteFret} = currentNoteInfo;
+      midiRef.playStrumDownNow(288, [stringsToMidiCode[noteString] + noteFret], 1);
+    } else {
+      midiRef.playStrumDownNow(288, [stringsToMidiCode[string] + fret], 1);
+    }
+  }
+
   return (
     <StyledEngineProvider injectFirst>
       <section id="navbar">
         <Navbar settings={settings} updateSettings={updateSettings} resetScore={resetScore}></Navbar>
       </section>
       <section id="main">
+        <MIDISounds
+            ref={(ref) => (midiRef = ref)}
+            appElementName="app"
+            instruments={[288]}
+        />
         <div className="game-container">
-          <UserInput needNewNote={needNewNote} setGuess={setGuess}/>
+          <UserInput needNewNote={needNewNote} setGuess={setGuess} playNote={playNote}/>
           <div className="guesses-results-container">
             {isIncorrect ? <b id="incorrect-message">Incorrect, please try again</b> : null}
             {isCorrect ? <b id="correct-message">Correct!</b> : null}
             <span>Last Guess: {guess}</span>
             <span>Correct/Total Guesses: {correctCount}/{totalGuesses}</span>
           </div>
-          <Display settings={settings} setNote={setCurrentNote} isCorrect={isCorrect} 
+          <Display settings={settings} setNote={setCurrentNoteInfo} playNote={playNote} isCorrect={isCorrect} 
             needNewNote={needNewNote} setNeedNewNote={setNeedNewNote}/>
         </div>
       </section>

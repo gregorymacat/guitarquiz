@@ -64,6 +64,9 @@ section#navbar {
   width: 2%;
   min-width: 30px;
 }
+#open-settings-icon {
+  cursor: pointer;
+}
 /* @-webkit-keyframes fade-in {
   100% { right: 0; }
 }
@@ -129,6 +132,9 @@ section#navbar {
 #options-select-container-slide-in label, #options-select-container-slide-out label {
   margin: 5%;
 }
+#close-settings-icon {
+  cursor: pointer;
+}
 
 #all-settings-container {
   height: 75%;
@@ -160,6 +166,7 @@ section#navbar {
   height: 6%;
 }
 #reset-stats {
+  cursor: pointer;
   height: 100%;
   width: 28%;
   min-width: 95px;
@@ -175,6 +182,7 @@ section#navbar {
   height: 6%;
 }
 #save-changes {
+  cursor: pointer;
   height: 100%;
   width: 28%;
   min-width: 95px;

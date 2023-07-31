@@ -30,7 +30,7 @@ function inputValidation(input) {
   return {isValid: true, error: ''};
 }
 
-function UserInput({needNewNote, setGuess}) {
+function UserInput({needNewNote, setGuess, playNote}) {
   const [input, setInput] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -70,7 +70,10 @@ function UserInput({needNewNote, setGuess}) {
       <input id="text-input" type="text" onChange={handleChange} value={input}></input>
       { isInvalid ? <span id="invalid-input-warning">{errorMessage}</span> : null }
       { isInvalid ? <span id="invalid-input-warning">Please refer to the top right information button for more details</span> : null }
-      <button id="text-submit" onClick={handleSubmit}><span>Submit</span></button>
+      <div className="buttons-container">
+        <button id="note-sound-button" type="button" onClick={playNote}>Play Note</button>
+        <button id="text-submit" type="submit">Submit</button>
+      </div>
     </form>
   )
 }
