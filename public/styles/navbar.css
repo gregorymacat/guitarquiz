@@ -56,6 +56,14 @@ section#navbar {
   height: 50%;
   font-size: 2vw;
 }
+.navbar-container #open-information-icon {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  height: 65%;
+  width: 2%;
+  min-width: 30px;
+}
 .navbar-container img {
   position: absolute;
   right: 1%;
@@ -99,6 +107,7 @@ section#navbar {
   justify-content: space-between;
   position: fixed;
   z-index: 2;
+  top: 0;
   right: -40%;
   width: 22%;
   height: 92%;
@@ -117,6 +126,7 @@ section#navbar {
   justify-content: space-between;
   position: fixed;
   z-index: 2;
+  top: 0;
   right: 0;
   width: 22%;
   height: 92%;
