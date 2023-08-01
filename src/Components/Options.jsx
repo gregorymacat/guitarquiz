@@ -13,12 +13,14 @@ function Options({showSettings, changeShowSettings, settings, updateSettings, re
   const [currStringCount, setCurrStringCount] = useState(settings.numOfStrings);
   const [currFretRange, setCurrFretRange] = useState(settings.fretRange);
   const [delay, setDelay] = useState(settings.delayBetweenNotes / 1000);
+  const [volume, setVolume] = useState(settings.volume * 100);
   const [showSaved, setShowSaved] = useState(false);
 
   useEffect(() => {
     setCurrStringCount(settings.numOfStrings);
     setCurrFretRange(settings.fretRange);
     setDelay(settings.delayBetweenNotes / 1000);
+    setVolume(settings.volume * 100);
   }, [settings]);
 
   useEffect(() => {
@@ -77,18 +79,23 @@ function Options({showSettings, changeShowSettings, settings, updateSettings, re
     setDelay(newValue);
   }
 
+  function handleVolumeChange(event, newValue) {
+    setVolume(newValue);
+  }
+
   async function handleSaveChanges () {
     const newSettings = {
       ...settings,
       numOfStrings: currStringCount,
       fretRange: currFretRange,
       delayBetweenNotes: delay * 1000,
+      volume: volume / 100,
     }
 
     if (JSON.stringify(settings) !== JSON.stringify(newSettings)) {
       setShowSaved(true);
 
-      updateSettings(currStringCount, currFretRange, delay);
+      updateSettings(currStringCount, currFretRange, delay, volume);
 
       //*IF THE TIME HERE IS CHANGED UPDATE THE LENGTH OF THE TRANSITION IN CSS
       //*#save-confirmation-text
@@ -139,6 +146,13 @@ function Options({showSettings, changeShowSettings, settings, updateSettings, re
                 <Slider id="delay-range" className="settings-slider" getAriaLabel={() => "Amount of Delay"}
                   onChange={handleDelayChange} valueLabelDisplay="auto"
                   min={1} max={5} defaultValue={settings.delayBetweenNotes / 1000} marks={delayMarkerLabels}
+                />
+              </div>
+              <div className="slider-container">
+                <label htmlFor="volume-range">Volume %</label>
+                <Slider id="volume-range" className="settings-slider" getAriaLabel={() => "Volume %"}
+                  onChange={handleVolumeChange} valueLabelDisplay="auto"
+                  min={0} max={100} defaultValue={settings.volume * 100} marks={volumeMarkerLabels}
                 />
               </div>
             </form>

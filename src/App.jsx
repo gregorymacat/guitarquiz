@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = {
   numOfFrets: 12,
   fretRange: [0, 12],
   delayBetweenNotes: 2000,
+  volume: 0.5,
 }
 
 const fretsToNextOctave = 12;
@@ -51,6 +52,7 @@ function App() {
 
     if (savedSettings) {
       setSettings(savedSettings);
+      midiRef.setMasterVolume(savedSettings.volume);
     }
     if (savedScores) {
       const { correct = 0, total = 0 } = savedScores;
@@ -113,13 +115,15 @@ function App() {
     setNeedNewNote(true);
   }
 
-  const updateSettings = (newStringCount, newFretRange, newDelay) => {
+  const updateSettings = (newStringCount, newFretRange, newDelay, newVolume) => {
     setSettings(prevState => ({
       ...prevState,
       numOfStrings: newStringCount,
       fretRange: newFretRange,
       delayBetweenNotes: newDelay * 1000,
+      volume: newVolume / 100,
     }));
+    midiRef.setMasterVolume(newVolume / 100);
     setIsIncorrect(false);
     setIsCorrect(false);
     setGuess('')
@@ -146,6 +150,7 @@ function App() {
             ref={(ref) => (midiRef = ref)}
             appElementName="app"
             instruments={[288]}
+            master={settings.volume}
         />
         <div className="game-container">
           <UserInput needNewNote={needNewNote} setGuess={setGuess} playNote={playNote}/>
