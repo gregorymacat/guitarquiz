@@ -56,6 +56,38 @@ section#navbar {
   height: 50%;
   font-size: 2vw;
 }
+.navbar-container #open-information-icon {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  height: 65%;
+  width: 2%;
+  min-width: 30px;
+}
+.tooltip-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  width: 16vw;
+  height: 25vh;
+  right: 5%;
+  background-color: white;
+  top: 100%;
+  align-items: center;
+  /* padding: 5px; */
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.tooltip-container text {
+  display: block;
+  color: black;
+  margin: 5px;
+}
+#open-information-icon {
+  cursor: pointer;
+}
+
 .navbar-container img {
   position: absolute;
   right: 1%;
@@ -63,6 +95,9 @@ section#navbar {
   height: 65%;
   width: 2%;
   min-width: 30px;
+}
+#open-settings-icon {
+  cursor: pointer;
 }
 /* @-webkit-keyframes fade-in {
   100% { right: 0; }
@@ -96,6 +131,7 @@ section#navbar {
   justify-content: space-between;
   position: fixed;
   z-index: 2;
+  top: 0;
   right: -40%;
   width: 22%;
   height: 92%;
@@ -114,6 +150,7 @@ section#navbar {
   justify-content: space-between;
   position: fixed;
   z-index: 2;
+  top: 0;
   right: 0;
   width: 22%;
   height: 92%;
@@ -128,6 +165,9 @@ section#navbar {
 }
 #options-select-container-slide-in label, #options-select-container-slide-out label {
   margin: 5%;
+}
+#close-settings-icon {
+  cursor: pointer;
 }
 
 #all-settings-container {
@@ -160,6 +200,7 @@ section#navbar {
   height: 6%;
 }
 #reset-stats {
+  cursor: pointer;
   height: 100%;
   width: 28%;
   min-width: 95px;
@@ -175,6 +216,7 @@ section#navbar {
   height: 6%;
 }
 #save-changes {
+  cursor: pointer;
   height: 100%;
   width: 28%;
   min-width: 95px;

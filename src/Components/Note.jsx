@@ -14,7 +14,7 @@ const GUITAR_NOTES = [
 const NOTE_STYLE = {fill: 'rgb(181, 26, 26)', stroke: 'rgb(181, 26, 26)'};
 const CORRECT_NOTE_STYLE = {fill: 'rgb(26, 148, 26)', stroke: 'rgb(26, 148, 26)'};
 
-function Note({guitarMeasurements, settings, setNote, isCorrect, needNewNote, setNeedNewNote}) {
+function Note({guitarMeasurements, settings, setNote, playNote, isCorrect, needNewNote, setNeedNewNote}) {
   const [newNoteX, setNewNoteX] = useState();
   const [newNoteY, setNewNoteY] = useState();
 
@@ -42,13 +42,22 @@ function Note({guitarMeasurements, settings, setNote, isCorrect, needNewNote, se
 
     setNewNoteX(xCoord);
     setNewNoteY(yCoord);
-    setNote(GUITAR_NOTES[randomString][randomFret]);
+    const noteInfo = {
+      noteValue: GUITAR_NOTES[randomString][randomFret],
+      noteString: randomString + 1,
+      noteFret: randomFret,
+    }
+    setNote(noteInfo);
+
+    playNote(randomString + 1, randomFret);
 
     setNeedNewNote(false);
   }
 
   return (
-    <circle cx={`${newNoteX}%`} cy={`${newNoteY}%`} r={`${radius}%`} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
+    <React.Fragment>
+      <circle cx={`${newNoteX}%`} cy={`${newNoteY}%`} r={`${radius}%`} style={isCorrect ? CORRECT_NOTE_STYLE : NOTE_STYLE}/>
+    </React.Fragment>
   )
 }
 
