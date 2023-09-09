@@ -6,9 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --watch --config webpack.dev.js",
-    "prod build": "webpack --config webpack.prod.js",
+    "build-prod": "webpack --config webpack.prod.js",
     "start": "nodemon ./server/app.js",
-    "prod start": "node ./server/app.js"
+    "start-prod": "node ./server/app.js"
   },
   "repository": {
     "type": "git",
